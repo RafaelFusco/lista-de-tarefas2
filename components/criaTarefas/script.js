@@ -33,9 +33,9 @@ const verificar = () => {
     inputNomeTarefa.focus()
 }
 
-inputNomeTarefa.addEventListener('keypress', (e) => {
+inputValorTarefa.addEventListener('keypress', (e) => {
     if (e.keyCode === 13) {
-        verificar()
+        createOrEdit(e)
     }
 })
 
@@ -52,14 +52,14 @@ inputValorTarefa.addEventListener('keydown', (e) => {
 })
 
 btnTarefa.addEventListener('click', (e) => {
-    func22(e)
+    createOrEdit(e)
 });
 
 document.addEventListener('click', (e) => {
-    func22(e)
+    createOrEdit(e)
 });
 
-function func22(e) {
+function createOrEdit(e) {
     let el = e.target
     if (el.classList.contains('apagar')) {
         el.parentElement.remove()
@@ -67,46 +67,53 @@ function func22(e) {
         inputNomeTarefa.value = ''
         inputValorTarefa.value = ''
         btnTarefa.innerHTML = 'Adicionar'
-        
+
         salvarTarefas()
         return
 
-    }
-    if (el.classList.contains('editar')) {
-        let div = el.parentElement.querySelector('div')
-        let textoCompl = div.textContent.split(" ")
-        let textoCorreto = textoCompl[0] + ' ' + textoCompl[1]
+    } else if (el.classList.contains('editar')) {
+        if (btnTarefa.innerHTML !== 'Editar') {
+            let div = el.parentElement.querySelector('div')
+            let textoCompl = div.textContent.split(" ")
+            let textoCorreto = textoCompl[0] + ' ' + textoCompl[1]
 
-        inputNomeTarefa.value = `${textoCompl[0]}`
-        inputValorTarefa.value = `${textoCompl[1]}`
-        btnTarefa.innerHTML = 'Editar'
+            inputNomeTarefa.value = `${textoCompl[0]}`
+            inputValorTarefa.value = `${textoCompl[1]}`
+            btnTarefa.innerHTML = 'Editar'
 
-        btnTarefa.addEventListener('click', function () {
-            if (btnTarefa.innerHTML === 'Editar') {
-                let elementosLi = tarefas.querySelectorAll('li')
+            const btnTarefaClickHandler = function () {
+                if (textoCompl[0] !== inputNomeTarefa.value || textoCompl[1] !== inputValorTarefa.value) {
+                    let elementosLi = tarefas.querySelectorAll('li')
 
-                for (let i = 0; i < elementosLi.length; i++) {
-                    let li = elementosLi[i];
-                    let div = li.querySelector('div')
+                    for (let i = 0; i < elementosLi.length; i++) {
+                        let li = elementosLi[i]
+                        let div = li.querySelector('div')
 
-                    if (div.textContent.includes(textoCorreto)) {
-                        textoCompl[0] = inputNomeTarefa.value
-                        textoCompl[1] = inputValorTarefa.value
+                        if (div.textContent.includes(textoCorreto)) {
+                            textoCompl[0] = inputNomeTarefa.value
+                            textoCompl[1] = inputValorTarefa.value
 
-                        console.log('achou')
+                            div.textContent = textoCompl[0] + ' ' + textoCompl[1]
 
-                        div.textContent = textoCompl[0] + ' ' + textoCompl[1]
+                            inputNomeTarefa.value = ''
+                            inputValorTarefa.value = ''
+                            btnTarefa.innerHTML = 'Adicionar'
 
-                        salvarTarefas()
+                            salvarTarefas()
 
-                        inputNomeTarefa.value = ''
-                        inputValorTarefa.value = ''
-                        break;
+                            btnTarefa.removeEventListener('click', btnTarefaClickHandler)
+                            return
+                        }
                     }
+                } else {
+                    alert('Mude o nome ou o valor para editar.')
                 }
             }
-        });
-    } else if (btnTarefa.innerHTML === 'Adicionar') {
+            btnTarefa.addEventListener('click', btnTarefaClickHandler)
+        } else {
+            alert('voce já esta editando')
+        }
+    } else if (el.classList.contains('submit') && el.innerHTML === 'Adicionar') {
         verificar()
     }
 }
