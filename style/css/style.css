@@ -1,0 +1,26 @@
+ul {
+  margin: 0.8rem 0;
+  padding: 0;
+}
+ul .liTarefa {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+ul .liTarefa .divName {
+  width: 40%;
+}
+ul .liTarefa .divValue {
+  width: 25%;
+}
+ul .liTarefa .liButtons {
+  display: flex;
+  justify-content: space-between;
+  width: 35%;
+}
+ul .liTarefa .liButtons button {
+  font-size: 10px;
+  padding: 0 2px;
+}
+
+/*# sourceMappingURL=style.css.map */

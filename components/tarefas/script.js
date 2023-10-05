@@ -3,11 +3,12 @@ const criaLi = () => {
     return li
 }
 
-const criaBtnApagar = (li, name, nameClass) => {
+const criaBtn = (li, name, nameClass) => {
     const btn = document.createElement('button')
     btn.innerText = `${name}`
     btn.setAttribute('class', `${nameClass}`)
     li.appendChild(btn)
+    return btn
 }
 
-export { criaLi, criaBtnApagar }
+export { criaLi, criaBtn }
