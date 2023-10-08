@@ -1,9 +1,4 @@
-const criaLi = () => {
-    const li = document.createElement('li')
-    return li
-}
-
-const criaBtn = (li, name, nameClass) => {
+const createBtn = (li, name, nameClass) => {
     const btn = document.createElement('button')
     btn.innerText = `${name}`
     btn.setAttribute('class', `${nameClass}`)
@@ -11,4 +6,4 @@ const criaBtn = (li, name, nameClass) => {
     return btn
 }
 
-export { criaLi, criaBtn }
+export { createBtn }

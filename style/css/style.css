@@ -1,24 +1,95 @@
-ul {
+body {
+  background-color: rgb(6, 81, 60);
+  display: flex;
+  justify-content: center;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  width: 250px;
+  padding: 20px;
+  background-color: aliceblue;
+  border-radius: 10px;
+}
+.container .inputItemName, .container .inputItemValue, .container .inputItemQt {
+  margin-bottom: 10px;
+}
+.container .value-and-amount {
+  display: flex;
+  justify-content: space-between;
+}
+.container .value-and-amount div {
+  display: flex;
+  flex-direction: column;
+  width: 45%;
+}
+.container .submit {
+  margin: 5px 0;
+}
+.container ul {
+  width: 240px;
   margin: 0.8rem 0;
   padding: 0;
 }
-ul .liTarefa {
+.container ul .liItem {
   display: flex;
   justify-content: space-between;
   width: 100%;
+  height: 25px;
+  margin: 5px 0;
 }
-ul .liTarefa .divName {
-  width: 40%;
+.container ul .liItem .divQt {
+  padding: 0 5px;
 }
-ul .liTarefa .divValue {
+.container ul .liItem .divName {
+  display: flex;
+  width: 35%;
+  height: 25px;
+  padding-bottom: 3px;
+  overflow-x: auto;
+  white-space: nowrap;
+}
+.container ul .liItem .divName::-webkit-scrollbar {
+  height: 5px;
+}
+.container ul .liItem .divName::-webkit-scrollbar-thumb {
+  background-color: #ceccee;
+}
+.container ul .liItem .divContainerValue {
+  display: flex;
+  justify-content: center;
+  margin-left: 4px;
   width: 25%;
+  height: 25px;
 }
-ul .liTarefa .liButtons {
+.container ul .liItem .divContainerValue .divMoney {
+  margin-top: 2px;
+  margin-right: 5px;
+  font-size: 13px;
+}
+.container ul .liItem .divContainerValue .divValue {
+  display: flex;
+  width: 60%;
+  margin-top: 2px;
+  overflow-x: auto;
+  white-space: nowrap;
+  font-size: 13px;
+  height: 25px;
+}
+.container ul .liItem .divContainerValue .divValue::-webkit-scrollbar {
+  height: 5px;
+}
+.container ul .liItem .divContainerValue .divValue::-webkit-scrollbar-thumb {
+  background-color: #ceccee;
+}
+.container ul .liItem .liButtons {
   display: flex;
   justify-content: space-between;
   width: 35%;
 }
-ul .liTarefa .liButtons button {
+.container ul .liItem .liButtons button {
+  height: 20px;
   font-size: 10px;
   padding: 0 2px;
 }

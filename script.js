@@ -1,37 +1,39 @@
-import { criaTarefa } from "./components/criaTarefas/script.js"
+import { createItem } from "./components/criaTarefas/script.js"
 
-const salvarTarefas = () => {
-    const tarefasArmazenadas = []
-    const liTarefas = document.querySelectorAll('.liTarefa')
+const saveItem = () => {
+    const storedItem = []
+    const liItem = document.querySelectorAll('.liItem')
 
-    liTarefas.forEach((li) => {
+    liItem.forEach((li) => {
         const divName = li.querySelector('.divName')
         const divValue = li.querySelector('.divValue')
+        const divQt = li.querySelector('.divQt')
 
-        const nomeTarefa = divName.textContent.trim()
-        const valorTarefa = divValue.textContent.trim()
+        const qtItem = divQt.textContent.trim()
+        const nameItem = divName.textContent.trim()
+        const valueItem = divValue.textContent.trim()
 
-        const textoTarefa = `${nomeTarefa} ${valorTarefa}`
+        const textItem = `${qtItem} ${nameItem} ${valueItem}`
 
-        tarefasArmazenadas.push(textoTarefa)
+        storedItem.push(textItem)
     });
 
-    localStorage.setItem('tarefas', JSON.stringify(tarefasArmazenadas))
+    localStorage.setItem('items', JSON.stringify(storedItem))
 };
 
-const addTarefasSalvas = () => {
-    const tarefasJSON = localStorage.getItem('tarefas')
+const addSavedItem = () => {
+    const itemJSON = localStorage.getItem('items')
 
-    if (tarefasJSON) {
-        const listaDeTarefas = JSON.parse(tarefasJSON)
+    if (itemJSON) {
+        const toDoList = JSON.parse(itemJSON)
 
-        listaDeTarefas.forEach((textoTarefa) => {
-            const [nomeTarefa, valorTarefa] = textoTarefa.split(' ')
-            criaTarefa(nomeTarefa, valorTarefa)
+        toDoList.forEach((textItem) => {
+            const [nameItem, valueItem, qtItem] = textItem.split(' ')
+            createItem(nameItem, valueItem, qtItem)
         })
     }
 }
 
-addTarefasSalvas()
+addSavedItem()
 
-export { salvarTarefas }
+export { saveItem }

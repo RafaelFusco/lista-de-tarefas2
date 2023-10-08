@@ -1,23 +1,92 @@
-ul
-    margin: 0.8rem 0
-    padding: 0
+body
+    background-color: rgb(6, 81, 60)
+    display: flex
+    justify-content: center
 
-    .liTarefa 
+.container
+    display: flex
+    flex-direction: column
+    width: 250px
+    padding: 20px
+    background-color: aliceblue
+    border-radius: 10px
+
+    .inputItemName, .inputItemValue, .inputItemQt
+        margin-bottom: 10px
+
+    .value-and-amount
         display: flex
         justify-content: space-between
-        width: 100%
 
-        .divName
-            width: 40%
+        div
+            display: flex
+            flex-direction: column
+            width: 45%
+    .submit
+        margin: 5px 0
 
-        .divValue
-            width: 25%
+    ul
+        width: 240px
+        margin: 0.8rem 0
+        padding: 0
 
-        .liButtons
+        .liItem 
             display: flex
             justify-content: space-between
-            width: 35%
-            
-            button
-                font-size: 10px
-                padding: 0 2px
+            width: 100%
+            height: 25px
+            margin: 5px 0
+
+            .divQt
+                padding: 0 5px
+
+            .divName
+                display: flex
+                width: 35%
+                height: 25px
+                padding-bottom: 3px
+                overflow-x: auto
+                white-space: nowrap
+
+                &::-webkit-scrollbar
+                    height: 5px
+
+                &::-webkit-scrollbar-thumb
+                    background-color: #ceccee // Cor da barra de rolagem
+
+            .divContainerValue
+                display: flex
+                justify-content: center
+                margin-left: 4px
+                width: 25%
+                height: 25px
+
+                .divMoney
+                    margin-top: 2px
+                    margin-right: 5px
+                    font-size: 13px
+
+                .divValue
+                    display: flex
+                    width: 60%
+                    margin-top: 2px
+                    overflow-x: auto
+                    white-space: nowrap
+                    font-size: 13px
+                    height: 25px
+
+                    &::-webkit-scrollbar
+                        height: 5px
+
+                    &::-webkit-scrollbar-thumb
+                        background-color: #ceccee
+
+            .liButtons
+                display: flex
+                justify-content: space-between
+                width: 35%
+                
+                button
+                    height: 20px
+                    font-size: 10px
+                    padding: 0 2px
