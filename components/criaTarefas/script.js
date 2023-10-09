@@ -1,24 +1,24 @@
 import { createBtn } from "../tarefas/script.js"
 import { saveItem } from "../../script.js"
 
-const inputItemQt = document.querySelector('.inputItemQt')
 const inputItemName = document.querySelector('.inputItemName')
+const inputItemQt = document.querySelector('.inputItemQt')
 const inputItemValue = document.querySelector('.inputItemValue')
 
 const btnItem = document.querySelector('.submit')
 const item = document.querySelector('.lista')
 
-const createItem = (qtInput, textInput, valueInput) => {
+const createItem = (textInput, qtInput, valueInput) => {
     let liItem = document.createElement('li')
     liItem.classList.add('liItem')
-
-    let divQt = document.createElement('div')
-    divQt.classList.add('divQt')
-    divQt.innerText = `${qtInput}`
 
     let divName = document.createElement('div')
     divName.classList.add('divName')
     divName.innerText = textInput
+
+    let divQt = document.createElement('div')
+    divQt.classList.add('divQt')
+    divQt.innerText = `${qtInput}`
 
     let divContainerValue = document.createElement('div')
     divContainerValue.classList.add('divContainerValue')
@@ -37,25 +37,47 @@ const createItem = (qtInput, textInput, valueInput) => {
     divContainerValue.appendChild(divMoney)
     divContainerValue.appendChild(divValue)
 
-    divButtons.appendChild(createBtn(liItem, 'Editar', 'editar'))
-    divButtons.appendChild(createBtn(liItem, 'Apagar', 'apagar'))
+    divButtons.appendChild(createBtn(liItem, 'Ed', 'editar'))
+    divButtons.appendChild(createBtn(liItem, 'Ap', 'apagar'))
 
-    liItem.appendChild(divQt)
     liItem.appendChild(divName)
+    liItem.appendChild(divQt)
     liItem.appendChild(divContainerValue)
     liItem.appendChild(divButtons)
 
     item.appendChild(liItem)
+    checkPrice()
     saveItem()
 }
 
 const check = () => {
-    if (!inputItemName.value || !inputItemValue.value || !inputItemQt.value) return
-    createItem(inputItemQt.value ,inputItemName.value, inputItemValue.value)
+    if (!inputItemName.value || !inputItemQt.value || !inputItemValue.value) return
+
+    createItem(inputItemName.value, inputItemQt.value, inputItemValue.value)
+
     inputItemName.value = ''
-    inputItemValue.value = ''
     inputItemQt.value = ''
+    inputItemValue.value = ''
+
     inputItemName.focus()
+}
+
+const checkPrice = () => {
+    let elementLi = item.querySelectorAll('.liItem')
+
+    for (let i = 0; i < elementLi.length; i++) {
+        let liItem = elementLi[i]
+
+        if (!liItem.classList.contains('true')) {
+
+            let divQt = liItem.querySelector('.divQt')
+            let divValue = liItem.querySelector('.divValue')
+
+            let correctPrice = divValue.innerText * divQt.innerText
+            divValue.innerText = correctPrice
+            liItem.classList.add('true')
+        } 
+    }
 }
 
 function createOrEdit(e) {
@@ -63,8 +85,8 @@ function createOrEdit(e) {
     if (el.classList.contains('apagar')) {
         el.parentElement.parentElement.remove()
 
-        inputItemQt.value = ''
         inputItemName.value = ''
+        inputItemQt.value = ''
         inputItemValue.value = ''
 
         btnItem.innerHTML = 'Adicionar'
@@ -74,37 +96,46 @@ function createOrEdit(e) {
 
     } else if (el.classList.contains('editar')) {
         if (btnItem.innerHTML !== 'Editar') {
-            let divQt = el.parentElement.parentElement.querySelector('.divQt')
             let divName = el.parentElement.parentElement.querySelector('.divName')
+            let divQt = el.parentElement.parentElement.querySelector('.divQt')
             let divValue = el.parentElement.parentElement.querySelector('.divValue')
 
-            let contentDivQt = divQt.textContent
             let contentDivName = divName.textContent
+            let contentDivQt = divQt.textContent
             let contentDivValue = divValue.textContent
 
-            inputItemQt.value = `${contentDivQt}`
             inputItemName.value = `${contentDivName}`
-            inputItemValue.value = `${contentDivValue}`
+            inputItemQt.value = `${contentDivQt}`
+
+            if (contentDivQt > 1) {
+                let unitPrice = contentDivValue / contentDivQt
+                inputItemValue.value = `${unitPrice}`
+            } else {
+                inputItemValue.value = `${contentDivValue}`
+            }
 
             btnItem.innerHTML = 'Editar'
 
-            const taskButtonHandler = function () {
-                const newQt = inputItemQt.value.trim()
+            const itemBtnHandler = function () {
                 const newName = inputItemName.value.trim()
+                const newQt = inputItemQt.value.trim()
                 const newValue = inputItemValue.value.trim()
+                const correctPrice = newValue * newQt
 
-                if (newName !== '' && newValue !== '' && newQt !== '') {
-                    if (contentDivName !== newName || contentDivValue !== newValue || contentDivQt !== newQt) {
+                if (newName !== '' && newQt !== '' && newValue !== '') {
+                    if (contentDivName !== newName || contentDivQt !== newQt || contentDivValue !== String(correctPrice)) {
+
                         let elementLi = item.querySelectorAll('.liItem')
-                        
+
                         for (let i = 0; i < elementLi.length; i++) {
                             let liItem = elementLi[i]
-                            
+
                             let divQt = liItem.querySelector('.divQt')
                             let divName = liItem.querySelector('.divName')
                             let divValue = liItem.querySelector('.divValue')
 
                             if (divName.textContent.trim() === contentDivName && divValue.textContent.trim() === contentDivValue && divQt.textContent.trim() === contentDivQt) {
+
                                 divQt.textContent = newQt
                                 divName.textContent = newName
                                 divValue.textContent = newValue
@@ -112,12 +143,15 @@ function createOrEdit(e) {
                                 inputItemQt.value = ''
                                 inputItemName.value = ''
                                 inputItemValue.value = ''
-                                
+
                                 btnItem.innerHTML = 'Adicionar'
 
-                                saveItem()
+                                liItem.classList.remove('true')
+                                checkPrice()
 
-                                btnItem.removeEventListener('click', taskButtonHandler)
+                                saveItem()
+                                
+                                btnItem.removeEventListener('click', itemBtnHandler)
                                 return
                             }
                         }
@@ -128,7 +162,7 @@ function createOrEdit(e) {
                     alert('Nome e valor da tarefa não podem estar em branco.')
                 }
             }
-            btnItem.addEventListener('click', taskButtonHandler)
+            btnItem.addEventListener('click', itemBtnHandler)
         } else {
             alert('voce já esta editando')
         }
@@ -136,6 +170,21 @@ function createOrEdit(e) {
         check()
     }
 }
+
+inputItemValue.addEventListener('keypress', (event) => {
+    let keyCode = event.keyCode || event.which
+    if (keyCode === 43 || keyCode === 45) {
+        event.preventDefault()
+    }
+})
+
+inputItemQt.addEventListener('keypress', function (event) {
+    let keyCode = event.keyCode || event.which
+    console.log(keyCode);
+    if (keyCode === 44 || keyCode === 46 || keyCode === 43 || keyCode === 45) {
+        event.preventDefault()
+    }
+})
 
 btnItem.addEventListener('click', (e) => {
     createOrEdit(e)
@@ -145,4 +194,4 @@ document.addEventListener('click', (e) => {
     createOrEdit(e)
 })
 
-export { item, createItem }
+export { item, createItem, checkPrice }

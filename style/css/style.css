@@ -7,8 +7,8 @@ body {
 .container {
   display: flex;
   flex-direction: column;
-  width: 250px;
-  padding: 20px;
+  width: 262px;
+  padding: 15px;
   background-color: aliceblue;
   border-radius: 10px;
 }
@@ -27,48 +27,78 @@ body {
 .container .submit {
   margin: 5px 0;
 }
-.container ul {
-  width: 240px;
-  margin: 0.8rem 0;
+.container .a2 {
+  border: 1px solid black;
+  width: 250px;
+  padding: 5px;
+}
+.container .a2 .a1 {
+  display: flex;
+  width: 250px;
+}
+.container .a2 .a1 .labelName, .container .a2 .a1 .labelQt, .container .a2 .a1 .labelValue, .container .a2 .a1 .labelEdit, .container .a2 .a1 .labelDelete {
+  font-size: 10px;
+  padding: 1px;
+  border-right: 1px solid black;
+}
+.container .a2 .a1 .labelName {
+  width: 30%;
+}
+.container .a2 .a1 .labelQt {
+  width: 20%;
+}
+.container .a2 .a1 .labelValue {
+  width: 25%;
+}
+.container .a2 .a1 .labelEdit {
+  width: 12.5%;
+}
+.container .a2 .a1 .labelDelete {
+  width: 12.5%;
+  border: none;
+}
+.container .a2 ul {
+  width: 250px;
+  margin: 0.6rem 0;
   padding: 0;
 }
-.container ul .liItem {
+.container .a2 ul .liItem {
   display: flex;
-  justify-content: space-between;
   width: 100%;
   height: 25px;
-  margin: 5px 0;
+  padding: 5px 0;
 }
-.container ul .liItem .divQt {
-  padding: 0 5px;
-}
-.container ul .liItem .divName {
+.container .a2 ul .liItem .divName {
   display: flex;
-  width: 35%;
+  width: 30%;
   height: 25px;
+  margin-right: 7px;
   padding-bottom: 3px;
   overflow-x: auto;
   white-space: nowrap;
 }
-.container ul .liItem .divName::-webkit-scrollbar {
+.container .a2 ul .liItem .divName::-webkit-scrollbar {
   height: 5px;
 }
-.container ul .liItem .divName::-webkit-scrollbar-thumb {
+.container .a2 ul .liItem .divName::-webkit-scrollbar-thumb {
   background-color: #ceccee;
 }
-.container ul .liItem .divContainerValue {
+.container .a2 ul .liItem .divQt {
+  width: 20%;
+  margin-top: 2px;
+  font-size: 13px;
+}
+.container .a2 ul .liItem .divContainerValue {
   display: flex;
-  justify-content: center;
-  margin-left: 4px;
   width: 25%;
   height: 25px;
 }
-.container ul .liItem .divContainerValue .divMoney {
+.container .a2 ul .liItem .divContainerValue .divMoney {
   margin-top: 2px;
-  margin-right: 5px;
+  margin-right: 1px;
   font-size: 13px;
 }
-.container ul .liItem .divContainerValue .divValue {
+.container .a2 ul .liItem .divContainerValue .divValue {
   display: flex;
   width: 60%;
   margin-top: 2px;
@@ -77,21 +107,27 @@ body {
   font-size: 13px;
   height: 25px;
 }
-.container ul .liItem .divContainerValue .divValue::-webkit-scrollbar {
+.container .a2 ul .liItem .divContainerValue .divValue::-webkit-scrollbar {
   height: 5px;
 }
-.container ul .liItem .divContainerValue .divValue::-webkit-scrollbar-thumb {
+.container .a2 ul .liItem .divContainerValue .divValue::-webkit-scrollbar-thumb {
   background-color: #ceccee;
 }
-.container ul .liItem .liButtons {
+.container .a2 ul .liItem .liButtons {
   display: flex;
-  justify-content: space-between;
-  width: 35%;
+  width: 25%;
 }
-.container ul .liItem .liButtons button {
+.container .a2 ul .liItem .liButtons button {
   height: 20px;
   font-size: 10px;
   padding: 0 2px;
+  width: 40%;
+}
+.container .a2 ul .liItem .liButtons .editar {
+  margin-right: 10%;
+}
+.container .a2 ul .liItem .liButtons .apagar {
+  width: 50%;
 }
 
 /*# sourceMappingURL=style.css.map */

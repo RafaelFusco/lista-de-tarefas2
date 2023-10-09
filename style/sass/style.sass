@@ -6,8 +6,8 @@ body
 .container
     display: flex
     flex-direction: column
-    width: 250px
-    padding: 20px
+    width: 262px
+    padding: 15px
     background-color: aliceblue
     border-radius: 10px
 
@@ -25,55 +25,55 @@ body
     .submit
         margin: 5px 0
 
-    ul
-        width: 240px
-        margin: 0.8rem 0
-        padding: 0
+    .a2
+        border: 1px solid black
+        width: 250px
+        padding: 5px
 
-        .liItem 
+        .a1
             display: flex
-            justify-content: space-between
-            width: 100%
-            height: 25px
-            margin: 5px 0
+            width: 250px
 
-            .divQt
-                padding: 0 5px
+            .labelName, .labelQt, .labelValue, .labelEdit, .labelDelete
+                font-size: 10px
+                padding: 1px
+                border-right: 1px solid black
+            
+            .labelName
+                width: 30%
+            
+            .labelQt
+                width: 20%
 
-            .divName
-                display: flex
-                width: 35%
-                height: 25px
-                padding-bottom: 3px
-                overflow-x: auto
-                white-space: nowrap
-
-                &::-webkit-scrollbar
-                    height: 5px
-
-                &::-webkit-scrollbar-thumb
-                    background-color: #ceccee // Cor da barra de rolagem
-
-            .divContainerValue
-                display: flex
-                justify-content: center
-                margin-left: 4px
+            .labelValue
                 width: 25%
+
+            .labelEdit
+                width: 12.5%
+                
+            .labelDelete
+                width: 12.5%
+                border: none
+
+        ul
+            width: 250px
+            margin: 0.6rem 0
+            padding: 0
+
+            .liItem 
+                display: flex
+                width: 100%
                 height: 25px
+                padding: 5px 0
 
-                .divMoney
-                    margin-top: 2px
-                    margin-right: 5px
-                    font-size: 13px
-
-                .divValue
+                .divName
                     display: flex
-                    width: 60%
-                    margin-top: 2px
+                    width: 30%
+                    height: 25px
+                    margin-right: 7px
+                    padding-bottom: 3px
                     overflow-x: auto
                     white-space: nowrap
-                    font-size: 13px
-                    height: 25px
 
                     &::-webkit-scrollbar
                         height: 5px
@@ -81,12 +81,49 @@ body
                     &::-webkit-scrollbar-thumb
                         background-color: #ceccee
 
-            .liButtons
-                display: flex
-                justify-content: space-between
-                width: 35%
+                .divQt
+                    width: 20%
+                    margin-top: 2px
+                    font-size: 13px
+
+                .divContainerValue
+                    display: flex
+                    width: 25%
+                    height: 25px
+
+                    .divMoney
+                        margin-top: 2px
+                        margin-right: 1px
+                        font-size: 13px
+
+                    .divValue
+                        display: flex
+                        width: 60%
+                        margin-top: 2px
+                        overflow-x: auto
+                        white-space: nowrap
+                        font-size: 13px
+                        height: 25px
+
+                        &::-webkit-scrollbar
+                            height: 5px
+
+                        &::-webkit-scrollbar-thumb
+                            background-color: #ceccee
+
+                .liButtons
+                    display: flex
+                    width: 25%
+                    
+                    button
+                        height: 20px
+                        font-size: 10px
+                        padding: 0 2px
+                        width: 40%
+
+                    .editar
+                        margin-right: 10%
+
+                    .apagar
+                        width: 50%
                 
-                button
-                    height: 20px
-                    font-size: 10px
-                    padding: 0 2px

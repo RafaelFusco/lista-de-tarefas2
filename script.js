@@ -1,4 +1,4 @@
-import { createItem } from "./components/criaTarefas/script.js"
+import { checkPrice, createItem } from "./components/criaTarefas/script.js"
 
 const saveItem = () => {
     const storedItem = []
@@ -6,16 +6,29 @@ const saveItem = () => {
 
     liItem.forEach((li) => {
         const divName = li.querySelector('.divName')
-        const divValue = li.querySelector('.divValue')
         const divQt = li.querySelector('.divQt')
+        const divValue = li.querySelector('.divValue')
 
-        const qtItem = divQt.textContent.trim()
-        const nameItem = divName.textContent.trim()
-        const valueItem = divValue.textContent.trim()
+        const correctValue = Number(divValue.textContent / divQt.textContent)
 
-        const textItem = `${qtItem} ${nameItem} ${valueItem}`
+        if (!li.classList.contains('true')) {
 
-        storedItem.push(textItem)
+            const nameItem = divName.textContent.trim()
+            const qtItem = divQt.textContent.trim()
+            const valueItem = divValue.textContent.trim()
+
+            const textItem = `${nameItem} ${qtItem} ${valueItem}`
+
+            storedItem.push(textItem)
+        } else {
+            const nameItem = divName.textContent.trim()
+            const qtItem = divQt.textContent.trim()
+            const valueItem = correctValue
+
+            const textItem = `${nameItem} ${qtItem} ${valueItem}`
+            
+            storedItem.push(textItem)
+        }
     });
 
     localStorage.setItem('items', JSON.stringify(storedItem))
@@ -28,12 +41,14 @@ const addSavedItem = () => {
         const toDoList = JSON.parse(itemJSON)
 
         toDoList.forEach((textItem) => {
-            const [nameItem, valueItem, qtItem] = textItem.split(' ')
-            createItem(nameItem, valueItem, qtItem)
+            const [nameItem, qtItem, valueItem] = textItem.split(' ')
+            createItem(nameItem, qtItem, valueItem)
         })
     }
 }
 
 addSavedItem()
 
-export { saveItem }
+checkPrice()
+
+export { saveItem, addSavedItem }
