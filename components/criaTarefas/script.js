@@ -4,9 +4,11 @@ import { saveItem } from "../../script.js"
 const inputItemName = document.querySelector('.inputItemName')
 const inputItemQt = document.querySelector('.inputItemQt')
 const inputItemValue = document.querySelector('.inputItemValue')
-
 const btnItem = document.querySelector('.submit')
+
 const item = document.querySelector('.lista')
+
+let totalValue = 0
 
 const createItem = (textInput, qtInput, valueInput) => {
     let liItem = document.createElement('li')
@@ -62,6 +64,19 @@ const check = () => {
     inputItemName.focus()
 }
 
+const checkTotalPrice = (nodeList) => {
+    let value = 0;
+
+    for (let i = 0; i < nodeList.length; i++) {
+        let numero = parseFloat(nodeList[i].textContent);
+        value += numero;
+    }
+
+    totalValue = value
+
+    return totalValue
+}
+
 const checkPrice = () => {
     let elementLi = item.querySelectorAll('.liItem')
 
@@ -75,12 +90,16 @@ const checkPrice = () => {
 
             let correctPrice = divValue.innerText * divQt.innerText
             divValue.innerText = correctPrice
+
             liItem.classList.add('true')
-        } 
+
+        }
     }
+    let elementDivValue = item.querySelectorAll('.divValue')
+    document.querySelector('.a3').innerHTML = `Valor total da lista: R$ ${checkTotalPrice(elementDivValue)}`
 }
 
-function createOrEdit(e) {
+function deleteOrEdit(e) {
     let el = e.target
     if (el.classList.contains('apagar')) {
         el.parentElement.parentElement.remove()
@@ -92,6 +111,7 @@ function createOrEdit(e) {
         btnItem.innerHTML = 'Adicionar'
 
         saveItem()
+        checkPrice()
         return
 
     } else if (el.classList.contains('editar')) {
@@ -150,7 +170,7 @@ function createOrEdit(e) {
                                 checkPrice()
 
                                 saveItem()
-                                
+
                                 btnItem.removeEventListener('click', itemBtnHandler)
                                 return
                             }
@@ -171,6 +191,8 @@ function createOrEdit(e) {
     }
 }
 
+
+
 inputItemValue.addEventListener('keypress', (event) => {
     let keyCode = event.keyCode || event.which
     if (keyCode === 43 || keyCode === 45) {
@@ -187,11 +209,11 @@ inputItemQt.addEventListener('keypress', function (event) {
 })
 
 btnItem.addEventListener('click', (e) => {
-    createOrEdit(e)
+    deleteOrEdit(e)
 })
 
 document.addEventListener('click', (e) => {
-    createOrEdit(e)
+    deleteOrEdit(e)
 })
 
 export { item, createItem, checkPrice }

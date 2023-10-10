@@ -22,58 +22,89 @@ body
             display: flex
             flex-direction: column
             width: 45%
+
     .submit
         margin: 5px 0
 
-    .a2
-        border: 1px solid black
+.a2
+    border: 1px solid black
+    width: 250px
+    padding: 5px
+
+    .a1
+        display: flex
         width: 250px
-        padding: 5px
 
-        .a1
+        .labelName, .labelQt, .labelValue, .labelEdit, .labelDelete
+            font-size: 10px
+            padding: 1px
+            border-right: 1px solid black
+        
+        .labelName
+            width: 30%
+        
+        .labelQt
+            width: 20%
+
+        .labelValue
+            width: 25%
+
+        .labelEdit
+            width: 12.5%
+            
+        .labelDelete
+            width: 12.5%
+            border: none
+
+    ul
+        width: 250px
+        margin: 0.6rem 0
+        padding: 0
+
+        .liItem 
             display: flex
-            width: 250px
+            width: 100%
+            height: 25px
+            padding: 5px 0
 
-            .labelName, .labelQt, .labelValue, .labelEdit, .labelDelete
-                font-size: 10px
-                padding: 1px
-                border-right: 1px solid black
-            
-            .labelName
-                width: 30%
-            
-            .labelQt
-                width: 20%
-
-            .labelValue
-                width: 25%
-
-            .labelEdit
-                width: 12.5%
-                
-            .labelDelete
-                width: 12.5%
-                border: none
-
-        ul
-            width: 250px
-            margin: 0.6rem 0
-            padding: 0
-
-            .liItem 
+            .divName
                 display: flex
-                width: 100%
+                width: 30%
                 height: 25px
-                padding: 5px 0
+                margin-right: 7px
+                padding-bottom: 3px
+                overflow-x: auto
+                white-space: nowrap
 
-                .divName
+                &::-webkit-scrollbar
+                    height: 5px
+
+                &::-webkit-scrollbar-thumb
+                    background-color: #ceccee
+
+            .divQt
+                width: 20%
+                margin-top: 2px
+                font-size: 13px
+
+            .divContainerValue
+                display: flex
+                width: 25%
+                height: 25px
+
+                .divMoney
+                    margin-top: 2px
+                    margin-right: 1px
+                    font-size: 13px
+
+                .divValue
                     display: flex
-                    width: 30%
-                    height: 25px
-                    margin-right: 7px
-                    padding-bottom: 3px
+                    width: 60%
+                    margin-top: 2px
                     overflow-x: auto
                     white-space: nowrap
+                    font-size: 13px
+                    height: 25px
 
                     &::-webkit-scrollbar
                         height: 5px
@@ -81,49 +112,24 @@ body
                     &::-webkit-scrollbar-thumb
                         background-color: #ceccee
 
-                .divQt
-                    width: 20%
-                    margin-top: 2px
-                    font-size: 13px
+            .liButtons
+                display: flex
+                width: 25%
+                
+                button
+                    height: 20px
+                    font-size: 10px
+                    padding: 0 2px
+                    width: 40%
 
-                .divContainerValue
-                    display: flex
-                    width: 25%
-                    height: 25px
+                .editar
+                    margin-right: 10%
 
-                    .divMoney
-                        margin-top: 2px
-                        margin-right: 1px
-                        font-size: 13px
+                .apagar
+                    width: 50%
 
-                    .divValue
-                        display: flex
-                        width: 60%
-                        margin-top: 2px
-                        overflow-x: auto
-                        white-space: nowrap
-                        font-size: 13px
-                        height: 25px
+.a3
+    padding-top: 5px
+    border-top: 1px solid black
 
-                        &::-webkit-scrollbar
-                            height: 5px
-
-                        &::-webkit-scrollbar-thumb
-                            background-color: #ceccee
-
-                .liButtons
-                    display: flex
-                    width: 25%
-                    
-                    button
-                        height: 20px
-                        font-size: 10px
-                        padding: 0 2px
-                        width: 40%
-
-                    .editar
-                        margin-right: 10%
-
-                    .apagar
-                        width: 50%
                 
