@@ -22,9 +22,19 @@ body {
 .container .value-and-amount div {
   display: flex;
   flex-direction: column;
-  width: 45%;
+  width: 47%;
 }
-.container .submit {
+.container .add-and-edit {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+.container .add-and-edit .submit {
+  width: 100%;
+  margin: 5px 0;
+}
+.container .add-and-edit .edit, .container .add-and-edit .cancel {
+  width: 47%;
   margin: 5px 0;
 }
 

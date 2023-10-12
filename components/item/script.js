@@ -1,14 +1,12 @@
-import { createBtn } from "../tarefas/script.js"
 import { saveItem } from "../../script.js"
+import { checkPrice } from "../priceChecks/script.js"
+import { createBtn } from "../itemBtn/script.js"
+import {
+    inputItemName, inputItemValue, inputItemQt,
+    btnContainer, btnItem
+} from "../itemForm/script.js"
 
-const inputItemName = document.querySelector('.inputItemName')
-const inputItemQt = document.querySelector('.inputItemQt')
-const inputItemValue = document.querySelector('.inputItemValue')
-const btnItem = document.querySelector('.submit')
-
-const item = document.querySelector('.lista')
-
-let totalValue = 0
+const listOfItems = document.querySelector('.lista')
 
 const createItem = (textInput, qtInput, valueInput) => {
     let liItem = document.createElement('li')
@@ -47,57 +45,38 @@ const createItem = (textInput, qtInput, valueInput) => {
     liItem.appendChild(divContainerValue)
     liItem.appendChild(divButtons)
 
-    item.appendChild(liItem)
+    listOfItems.appendChild(liItem)
     checkPrice()
     saveItem()
 }
 
 const check = () => {
-    if (!inputItemName.value || !inputItemQt.value || !inputItemValue.value) return
+    if (!inputItemName.value || !inputItemQt.value || !inputItemValue.value) {
+        alert('Preencha todos os campos abaixo para adicionar o item.')
+        return
+    } else {
+        createItem(inputItemName.value, inputItemQt.value, inputItemValue.value)
 
-    createItem(inputItemName.value, inputItemQt.value, inputItemValue.value)
+        inputItemName.value = ''
+        inputItemQt.value = ''
+        inputItemValue.value = ''
 
-    inputItemName.value = ''
-    inputItemQt.value = ''
-    inputItemValue.value = ''
-
-    inputItemName.focus()
-}
-
-const checkTotalPrice = (nodeList) => {
-    let value = 0;
-
-    for (let i = 0; i < nodeList.length; i++) {
-        let numero = parseFloat(nodeList[i].textContent);
-        value += numero;
+        inputItemName.focus()
     }
-
-    totalValue = value
-
-    return totalValue
 }
 
-const checkPrice = () => {
-    let elementLi = item.querySelectorAll('.liItem')
+const createCancelEdit = () => {
+    const cancel = document.createElement('button')
+    cancel.classList.add('cancel')
+    cancel.innerText = 'Cancelar'
+    return cancel
+}
 
-    for (let i = 0; i < elementLi.length; i++) {
-        let liItem = elementLi[i]
-
-        if (!liItem.classList.contains('true')) {
-
-            let divQt = liItem.querySelector('.divQt')
-            let divValue = liItem.querySelector('.divValue')
-
-            let correctPrice = divValue.innerText * divQt.innerText
-            divValue.innerText = correctPrice
-
-            liItem.classList.add('true')
-
-        }
+btnItem.addEventListener('click', () =>{
+    if(btnItem.innerText === 'Adicionar') {
+        check()
     }
-    let elementDivValue = item.querySelectorAll('.divValue')
-    document.querySelector('.a3').innerHTML = `Valor total da lista: R$ ${checkTotalPrice(elementDivValue)}`
-}
+})
 
 function deleteOrEdit(e) {
     let el = e.target
@@ -135,6 +114,26 @@ function deleteOrEdit(e) {
             }
 
             btnItem.innerHTML = 'Editar'
+            btnItem.classList.add('edit')
+
+
+            const btnCancel = createCancelEdit()
+
+            btnContainer.appendChild(btnCancel)
+
+            btnCancel.addEventListener('click', () => {
+                btnItem.innerHTML = 'Adicionar'
+
+                inputItemName.value = ''
+                inputItemQt.value = ''
+                inputItemValue.value = ''
+
+                btnItem.classList.remove('edit')
+                btnCancel.remove()
+                btnItem.removeEventListener('click', itemBtnHandler)
+
+                return
+            })
 
             const itemBtnHandler = function () {
                 const newName = inputItemName.value.trim()
@@ -145,7 +144,7 @@ function deleteOrEdit(e) {
                 if (newName !== '' && newQt !== '' && newValue !== '') {
                     if (contentDivName !== newName || contentDivQt !== newQt || contentDivValue !== String(correctPrice)) {
 
-                        let elementLi = item.querySelectorAll('.liItem')
+                        let elementLi = listOfItems.querySelectorAll('.liItem')
 
                         for (let i = 0; i < elementLi.length; i++) {
                             let liItem = elementLi[i]
@@ -171,49 +170,28 @@ function deleteOrEdit(e) {
 
                                 saveItem()
 
+                                btnItem.classList.remove('edit')
+                                btnCancel.remove()
                                 btnItem.removeEventListener('click', itemBtnHandler)
                                 return
                             }
                         }
                     } else {
-                        alert('Mude o nome ou o valor para editar.')
+                        alert('Altere algum dos campos abaixo para editar o item.')
                     }
                 } else {
-                    alert('Nome e valor da tarefa não podem estar em branco.')
+                    alert('Nenhum campo pode estar em branco.')
                 }
             }
             btnItem.addEventListener('click', itemBtnHandler)
         } else {
-            alert('voce já esta editando')
+            alert('você já esta editando.')
         }
-    } else if (el.classList.contains('submit') && el.innerHTML === 'Adicionar') {
-        check()
     }
 }
-
-
-
-inputItemValue.addEventListener('keypress', (event) => {
-    let keyCode = event.keyCode || event.which
-    if (keyCode === 43 || keyCode === 45) {
-        event.preventDefault()
-    }
-})
-
-inputItemQt.addEventListener('keypress', function (event) {
-    let keyCode = event.keyCode || event.which
-    console.log(keyCode);
-    if (keyCode === 44 || keyCode === 46 || keyCode === 43 || keyCode === 45) {
-        event.preventDefault()
-    }
-})
-
-btnItem.addEventListener('click', (e) => {
-    deleteOrEdit(e)
-})
 
 document.addEventListener('click', (e) => {
     deleteOrEdit(e)
 })
 
-export { item, createItem, checkPrice }
+export { listOfItems, createItem, deleteOrEdit }

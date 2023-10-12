@@ -1,4 +1,5 @@
-import { checkPrice, createItem } from "./components/criaTarefas/script.js"
+import { createItem } from "./components/item/script.js"
+import { checkPrice } from "./components/priceChecks/script.js";
 
 const saveItem = () => {
     const storedItem = []
@@ -26,7 +27,7 @@ const saveItem = () => {
             const valueItem = correctValue
 
             const textItem = `${nameItem} ${qtItem} ${valueItem}`
-            
+
             storedItem.push(textItem)
         }
     });
@@ -51,4 +52,4 @@ addSavedItem()
 
 checkPrice()
 
-export { saveItem, addSavedItem }
+export { saveItem }
