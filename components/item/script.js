@@ -11,6 +11,10 @@ const listOfItems = document.querySelector('.lista')
 const createItem = (textInput, qtInput, valueInput) => {
     let liItem = document.createElement('li')
     liItem.classList.add('liItem')
+    liItem.draggable = true
+
+    // Defina um id único para cada liItem
+    liItem.id = listOfItems.children.length;
 
     let divName = document.createElement('div')
     divName.classList.add('divName')
@@ -48,6 +52,8 @@ const createItem = (textInput, qtInput, valueInput) => {
     listOfItems.appendChild(liItem)
     checkPrice()
     saveItem()
+
+    
 }
 
 const check = () => {
@@ -72,8 +78,8 @@ const createCancelEdit = () => {
     return cancel
 }
 
-btnItem.addEventListener('click', () =>{
-    if(btnItem.innerText === 'Adicionar') {
+btnItem.addEventListener('click', () => {
+    if (btnItem.innerText === 'Adicionar') {
         check()
     }
 })
@@ -193,5 +199,36 @@ function deleteOrEdit(e) {
 document.addEventListener('click', (e) => {
     deleteOrEdit(e)
 })
+
+listOfItems.addEventListener('dragstart', (e) => {
+    e.dataTransfer.setData('text/plain', e.target.id)
+});
+
+listOfItems.addEventListener('dragover', (e) => {
+    e.preventDefault()
+});
+
+listOfItems.addEventListener('dragstart', (e) => {
+    e.dataTransfer.setData('text/plain', e.target.id)
+});
+
+listOfItems.addEventListener('dragover', (e) => {
+    e.preventDefault()
+});
+
+listOfItems.addEventListener('drop', (e) => {
+    e.preventDefault()
+    const fromId = e.dataTransfer.getData('text/plain')
+    const toId = e.target.id
+
+    if (fromId !== toId) {
+        const fromElement = document.getElementById(fromId)
+        const toElement = document.getElementById(toId)
+        
+        listOfItems.insertBefore(fromElement, toElement)
+
+        saveItem()
+    }
+});
 
 export { listOfItems, createItem, deleteOrEdit }

@@ -21,6 +21,9 @@ const checkPrice = () => {
     for (let i = 0; i < elementLi.length; i++) {
         let liItem = elementLi[i]
 
+        // let idLi = `item-${i}`
+        // liItem.setAttribute('id', idLi)
+
         if (!liItem.classList.contains('true')) {
 
             let divQt = liItem.querySelector('.divQt')
