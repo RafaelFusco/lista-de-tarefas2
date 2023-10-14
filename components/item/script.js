@@ -5,16 +5,14 @@ import {
     inputItemName, inputItemValue, inputItemQt,
     btnContainer, btnItem
 } from "../itemForm/script.js"
+import { createSearchBar } from "../itemSearch/script.js"
 
 const listOfItems = document.querySelector('.lista')
+
 
 const createItem = (textInput, qtInput, valueInput) => {
     let liItem = document.createElement('li')
     liItem.classList.add('liItem')
-    liItem.draggable = true
-
-    // Defina um id único para cada liItem
-    liItem.id = listOfItems.children.length;
 
     let divName = document.createElement('div')
     divName.classList.add('divName')
@@ -41,8 +39,8 @@ const createItem = (textInput, qtInput, valueInput) => {
     divContainerValue.appendChild(divMoney)
     divContainerValue.appendChild(divValue)
 
-    divButtons.appendChild(createBtn(liItem, 'Ed', 'editar'))
-    divButtons.appendChild(createBtn(liItem, 'Ap', 'apagar'))
+    divButtons.appendChild(createBtn('Ed', 'editar'))
+    divButtons.appendChild(createBtn('Ap', 'apagar'))
 
     liItem.appendChild(divName)
     liItem.appendChild(divQt)
@@ -52,8 +50,6 @@ const createItem = (textInput, qtInput, valueInput) => {
     listOfItems.appendChild(liItem)
     checkPrice()
     saveItem()
-
-    
 }
 
 const check = () => {
@@ -61,13 +57,29 @@ const check = () => {
         alert('Preencha todos os campos abaixo para adicionar o item.')
         return
     } else {
-        createItem(inputItemName.value, inputItemQt.value, inputItemValue.value)
+        let tem = false
+        let items = listOfItems.querySelectorAll('.liItem')
 
-        inputItemName.value = ''
-        inputItemQt.value = ''
-        inputItemValue.value = ''
+        for (let i = 0; i < items.length; i++) {
+            let item = items[i]
+            let itemName = item.querySelector('.divName').textContent
 
-        inputItemName.focus()
+            if (inputItemName.value === itemName) {
+                tem = true
+            }
+        }
+
+        if (tem === false) {
+            createItem(inputItemName.value, inputItemQt.value, inputItemValue.value)
+
+            inputItemName.value = ''
+            inputItemQt.value = ''
+            inputItemValue.value = ''
+
+            inputItemName.focus()
+        } else {
+            alert('Já existe um item com este nome na lista.')
+        }
     }
 }
 
@@ -193,6 +205,25 @@ function deleteOrEdit(e) {
         } else {
             alert('você já esta editando.')
         }
+    } else if (el.classList.contains('search')) {
+        let inputSearch = document.querySelector('.inputSearch')
+
+        let items = listOfItems.querySelectorAll('.liItem')
+
+        if (inputSearch.value !== '') {
+            items.forEach(item => {
+                let nameItem = item.querySelector('.divName').textContent
+
+                if (inputSearch.value === nameItem) {
+
+                    item.style.background = 'green'
+
+                    setTimeout(() => {
+                        item.style.background = '#fff'
+                    }, 1000);
+                }
+            });
+        }
     }
 }
 
@@ -200,35 +231,6 @@ document.addEventListener('click', (e) => {
     deleteOrEdit(e)
 })
 
-listOfItems.addEventListener('dragstart', (e) => {
-    e.dataTransfer.setData('text/plain', e.target.id)
-});
-
-listOfItems.addEventListener('dragover', (e) => {
-    e.preventDefault()
-});
-
-listOfItems.addEventListener('dragstart', (e) => {
-    e.dataTransfer.setData('text/plain', e.target.id)
-});
-
-listOfItems.addEventListener('dragover', (e) => {
-    e.preventDefault()
-});
-
-listOfItems.addEventListener('drop', (e) => {
-    e.preventDefault()
-    const fromId = e.dataTransfer.getData('text/plain')
-    const toId = e.target.id
-
-    if (fromId !== toId) {
-        const fromElement = document.getElementById(fromId)
-        const toElement = document.getElementById(toId)
-        
-        listOfItems.insertBefore(fromElement, toElement)
-
-        saveItem()
-    }
-});
+createSearchBar()
 
 export { listOfItems, createItem, deleteOrEdit }
