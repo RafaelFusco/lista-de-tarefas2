@@ -1,6 +1,6 @@
-import { deleteOrEdit } from "../item/script.js"
 
 const inputItemName = document.querySelector('.inputItemName')
+const inputItemPosition = document.querySelector('.inputItemPosition')
 const inputItemQt = document.querySelector('.inputItemQt')
 const inputItemValue = document.querySelector('.inputItemValue')
 
@@ -22,4 +22,4 @@ inputItemQt.addEventListener('keypress', function (event) {
     }
 })
 
-export { inputItemName, inputItemQt, inputItemValue, btnContainer, btnItem}
+export { inputItemName, inputItemPosition, inputItemQt, inputItemValue, btnContainer, btnItem}

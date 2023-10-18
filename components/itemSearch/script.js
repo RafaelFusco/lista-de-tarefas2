@@ -8,7 +8,6 @@ const createSearchBar = () => {
 
     searchArea.appendChild(input)
     searchArea.appendChild(createBtn('Pesquisar', 'search'))
-
 }
 
 export { createSearchBar }

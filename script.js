@@ -7,6 +7,7 @@ const saveItem = () => {
 
     liItem.forEach((li) => {
         const divName = li.querySelector('.divName')
+        const divPosition = li.id
         const divQt = li.querySelector('.divQt')
         const divValue = li.querySelector('.divValue')
 
@@ -15,18 +16,20 @@ const saveItem = () => {
         if (!li.classList.contains('true')) {
 
             const nameItem = divName.textContent.trim()
+            const positionItem = divPosition
             const qtItem = divQt.textContent.trim()
             const valueItem = divValue.textContent.trim()
 
-            const textItem = `${nameItem} ${qtItem} ${valueItem}`
+            const textItem = `${nameItem} ${qtItem} ${valueItem} ${positionItem}`
 
             storedItem.push(textItem)
         } else {
             const nameItem = divName.textContent.trim()
+            const positionItem = divPosition
             const qtItem = divQt.textContent.trim()
             const valueItem = correctValue
 
-            const textItem = `${nameItem} ${qtItem} ${valueItem}`
+            const textItem = `${nameItem} ${qtItem} ${valueItem} ${positionItem}`
 
             storedItem.push(textItem)
         }
@@ -42,8 +45,8 @@ const addSavedItem = () => {
         const toDoList = JSON.parse(itemJSON)
 
         toDoList.forEach((textItem) => {
-            const [nameItem, qtItem, valueItem] = textItem.split(' ')
-            createItem(nameItem, qtItem, valueItem)
+            const [nameItem, qtItem, valueItem, positionItem] = textItem.split(' ')
+            createItem(nameItem, qtItem, valueItem, positionItem)
         })
     }
 }

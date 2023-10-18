@@ -1,4 +1,5 @@
 import { listOfItems } from "../item/script.js";
+import { inputItemPosition } from "../itemForm/script.js";
 
 let totalValue = 0
 
@@ -17,6 +18,8 @@ const checkTotalPrice = (nodeList) => {
 
 const checkPrice = () => {
     let elementLi = listOfItems.querySelectorAll('.liItem')
+    
+    inputItemPosition.value = elementLi.length + 1
 
     for (let i = 0; i < elementLi.length; i++) {
         let liItem = elementLi[i]

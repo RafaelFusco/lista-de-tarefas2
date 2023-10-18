@@ -1,22 +1,29 @@
 import { saveItem } from "../../script.js"
 import { checkPrice } from "../priceChecks/script.js"
 import { createBtn } from "../itemBtn/script.js"
-import {
-    inputItemName, inputItemValue, inputItemQt,
-    btnContainer, btnItem
-} from "../itemForm/script.js"
+import { inputItemName, inputItemValue, inputItemQt, btnContainer, btnItem, inputItemPosition } from "../itemForm/script.js"
 import { createSearchBar } from "../itemSearch/script.js"
+
+function capitalizeFirstLetter(input) {
+    return input
+        .split('-')
+        .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+        .join('-');
+}
 
 const listOfItems = document.querySelector('.lista')
 
-
-const createItem = (textInput, qtInput, valueInput) => {
+const createItem = (textInput, qtInput, valueInput, index) => {
     let liItem = document.createElement('li')
     liItem.classList.add('liItem')
+    liItem.id = `${index}`
 
     let divName = document.createElement('div')
     divName.classList.add('divName')
-    divName.innerText = textInput
+
+    let name = capitalizeFirstLetter(textInput)
+    let adaptedName = name.replace(/\s/g, "-");
+    divName.innerText = adaptedName
 
     let divQt = document.createElement('div')
     divQt.classList.add('divQt')
@@ -48,12 +55,15 @@ const createItem = (textInput, qtInput, valueInput) => {
     liItem.appendChild(divButtons)
 
     listOfItems.appendChild(liItem)
+
     checkPrice()
     saveItem()
+
+    liItem.scrollIntoView({ behavior: "smooth" })
 }
 
 const check = () => {
-    if (!inputItemName.value || !inputItemQt.value || !inputItemValue.value) {
+    if (!inputItemName.value || !inputItemPosition.value || !inputItemQt.value || !inputItemValue.value) {
         alert('Preencha todos os campos abaixo para adicionar o item.')
         return
     } else {
@@ -70,7 +80,7 @@ const check = () => {
         }
 
         if (tem === false) {
-            createItem(inputItemName.value, inputItemQt.value, inputItemValue.value)
+            createItem(inputItemName.value, inputItemQt.value, inputItemValue.value, inputItemPosition.value)
 
             inputItemName.value = ''
             inputItemQt.value = ''
@@ -97,7 +107,9 @@ btnItem.addEventListener('click', () => {
 })
 
 function deleteOrEdit(e) {
+    const itemsOfList = listOfItems.querySelectorAll('.liItem')
     let el = e.target
+
     if (el.classList.contains('apagar')) {
         el.parentElement.parentElement.remove()
 
@@ -107,6 +119,10 @@ function deleteOrEdit(e) {
 
         btnItem.innerHTML = 'Adicionar'
 
+        btnItem.classList.remove('edit')
+        document.querySelector('.cancel').remove()
+        inputItemPosition.value = itemsOfList.length + 1
+
         saveItem()
         checkPrice()
         return
@@ -114,14 +130,19 @@ function deleteOrEdit(e) {
     } else if (el.classList.contains('editar')) {
         if (btnItem.innerHTML !== 'Editar') {
             let divName = el.parentElement.parentElement.querySelector('.divName')
+
+            let divPosition = el.parentElement.parentElement.parentElement.querySelector('.liItem')
+
             let divQt = el.parentElement.parentElement.querySelector('.divQt')
             let divValue = el.parentElement.parentElement.querySelector('.divValue')
 
             let contentDivName = divName.textContent
+            let contentDivPosition = divPosition.id
             let contentDivQt = divQt.textContent
             let contentDivValue = divValue.textContent
 
             inputItemName.value = `${contentDivName}`
+            inputItemPosition.value = `${contentDivPosition}`
             inputItemQt.value = `${contentDivQt}`
 
             if (contentDivQt > 1) {
@@ -140,45 +161,58 @@ function deleteOrEdit(e) {
             btnContainer.appendChild(btnCancel)
 
             btnCancel.addEventListener('click', () => {
-                btnItem.innerHTML = 'Adicionar'
 
+                btnItem.innerHTML = 'Adicionar'
+                
                 inputItemName.value = ''
                 inputItemQt.value = ''
                 inputItemValue.value = ''
-
+                
                 btnItem.classList.remove('edit')
                 btnCancel.remove()
                 btnItem.removeEventListener('click', itemBtnHandler)
 
+                inputItemPosition.value = itemsOfList.length + 1
                 return
             })
 
             const itemBtnHandler = function () {
-                const newName = inputItemName.value.trim()
-                const newQt = inputItemQt.value.trim()
-                const newValue = inputItemValue.value.trim()
-                const correctPrice = newValue * newQt
+                let newName = inputItemName.value.trim()
+                let newPosition = inputItemPosition.value.trim()
+                let newQt = inputItemQt.value.trim()
+                let newValue = inputItemValue.value.trim()
+                let correctPrice = newValue * newQt
 
-                if (newName !== '' && newQt !== '' && newValue !== '') {
-                    if (contentDivName !== newName || contentDivQt !== newQt || contentDivValue !== String(correctPrice)) {
+                let name = capitalizeFirstLetter(newName)
+                newName = name.replace(/\s/g, "-");
+
+                if (newName !== '' && newQt !== '' && newValue !== '' && newPosition !== '') {
+                    if (contentDivName !== newName || contentDivQt !== newQt || contentDivValue !== String(correctPrice) || contentDivPosition !== newPosition) {
 
                         let elementLi = listOfItems.querySelectorAll('.liItem')
 
                         for (let i = 0; i < elementLi.length; i++) {
                             let liItem = elementLi[i]
 
-                            let divQt = liItem.querySelector('.divQt')
                             let divName = liItem.querySelector('.divName')
+                            let divPosition = liItem.id
+                            let divQt = liItem.querySelector('.divQt')
                             let divValue = liItem.querySelector('.divValue')
 
-                            if (divName.textContent.trim() === contentDivName && divValue.textContent.trim() === contentDivValue && divQt.textContent.trim() === contentDivQt) {
+                            console.log(divPosition);
 
-                                divQt.textContent = newQt
+                            if (divName.textContent.trim() === contentDivName && divValue.textContent.trim() === contentDivValue && divQt.textContent.trim() === contentDivQt && divPosition === contentDivPosition) {
+
                                 divName.textContent = newName
+                                liItem.id = newPosition
+                                divQt.textContent = newQt
                                 divValue.textContent = newValue
 
-                                inputItemQt.value = ''
+                                console.log(divPosition);
+
                                 inputItemName.value = ''
+                                inputItemPosition.value = ''
+                                inputItemQt.value = ''
                                 inputItemValue.value = ''
 
                                 btnItem.innerHTML = 'Adicionar'
@@ -213,9 +247,10 @@ function deleteOrEdit(e) {
         if (inputSearch.value !== '') {
             items.forEach(item => {
                 let nameItem = item.querySelector('.divName').textContent
+                let itemNameAdapted = capitalizeFirstLetter(inputSearch.value)
 
-                if (inputSearch.value === nameItem) {
-
+                if (inputSearch.value === nameItem || itemNameAdapted === nameItem) {
+                    item.scrollIntoView({ behavior: "smooth" })
                     item.style.background = 'green'
 
                     setTimeout(() => {
