@@ -119,10 +119,13 @@ function deleteOrEdit(e) {
 
         btnItem.innerHTML = 'Adicionar'
 
-        btnItem.classList.remove('edit')
-        document.querySelector('.cancel').remove()
-        inputItemPosition.value = itemsOfList.length + 1
+        if (btnItem.classList.contains('edit')) {
+            btnItem.classList.remove('edit')
+            document.querySelector('.cancel').remove()
+        }
 
+        inputItemPosition.value = itemsOfList.length + 1
+        
         saveItem()
         checkPrice()
         return
@@ -155,7 +158,6 @@ function deleteOrEdit(e) {
             btnItem.innerHTML = 'Editar'
             btnItem.classList.add('edit')
 
-
             const btnCancel = createCancelEdit()
 
             btnContainer.appendChild(btnCancel)
@@ -163,11 +165,11 @@ function deleteOrEdit(e) {
             btnCancel.addEventListener('click', () => {
 
                 btnItem.innerHTML = 'Adicionar'
-                
+
                 inputItemName.value = ''
                 inputItemQt.value = ''
                 inputItemValue.value = ''
-                
+
                 btnItem.classList.remove('edit')
                 btnCancel.remove()
                 btnItem.removeEventListener('click', itemBtnHandler)
