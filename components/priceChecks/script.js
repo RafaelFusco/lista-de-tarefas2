@@ -1,4 +1,4 @@
-import { listOfItems } from "../item/script.js";
+import { attIndex } from "../item/script.js";
 import { inputItemPosition } from "../itemForm/script.js";
 
 let totalValue = 0
@@ -17,8 +17,14 @@ const checkTotalPrice = (nodeList) => {
 }
 
 const checkPrice = () => {
+    let listOfItems = document.querySelector('.lista')
     let elementLi = listOfItems.querySelectorAll('.liItem')
-    
+
+    if (elementLi.length > 0) {   
+        let itemsOflist = document.querySelectorAll('.liItem')
+        attIndex(itemsOflist)
+    }
+
     inputItemPosition.value = elementLi.length + 1
 
     for (let i = 0; i < elementLi.length; i++) {

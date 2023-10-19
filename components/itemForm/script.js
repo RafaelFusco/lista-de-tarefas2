@@ -1,4 +1,3 @@
-
 const inputItemName = document.querySelector('.inputItemName')
 const inputItemPosition = document.querySelector('.inputItemPosition')
 const inputItemQt = document.querySelector('.inputItemQt')
