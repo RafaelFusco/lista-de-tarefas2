@@ -17,7 +17,7 @@ const checkTotalPrice = (nodeList) => {
 }
 
 const checkPrice = () => {
-    let listOfItems = document.querySelector('.lista')
+    let listOfItems = document.querySelector('.list')
     let elementLi = listOfItems.querySelectorAll('.liItem')
 
     if (elementLi.length > 0) {   
@@ -32,8 +32,8 @@ const checkPrice = () => {
 
         if (!liItem.classList.contains('true')) {
 
-            let divQt = liItem.querySelector('.divQt')
-            let divValue = liItem.querySelector('.divValue')
+            let divQt = liItem.querySelector('.div-qt')
+            let divValue = liItem.querySelector('.div-value')
 
             let correctPrice = divValue.innerText * divQt.innerText
             divValue.innerText = correctPrice
@@ -41,8 +41,8 @@ const checkPrice = () => {
             liItem.classList.add('true')
         }
     }
-    let elementDivValue = listOfItems.querySelectorAll('.divValue')
-    document.querySelector('.a3').innerHTML = `Valor total da lista: R$ ${checkTotalPrice(elementDivValue)}`
+    let elementDivValue = listOfItems.querySelectorAll('.div-value')
+    document.querySelector('.total-value').innerHTML = `Valor total da lista: R$ ${checkTotalPrice(elementDivValue)}`
 }
 
 export { checkPrice }

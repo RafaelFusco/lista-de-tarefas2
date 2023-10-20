@@ -4,7 +4,7 @@ const inputItemQt = document.querySelector('.inputItemQt')
 const inputItemValue = document.querySelector('.inputItemValue')
 
 const btnContainer = document.querySelector('.add-and-edit')
-const btnItem = document.querySelector('.submit')
+const btnItem = document.querySelector('.add')
 
 inputItemValue.addEventListener('keypress', (event) => {
     let keyCode = event.keyCode || event.which

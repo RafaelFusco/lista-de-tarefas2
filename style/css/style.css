@@ -3,6 +3,7 @@ body {
   justify-content: center;
   height: 100vh;
   margin: 0;
+  padding: 0;
   background-color: rgb(6, 81, 60);
 }
 
@@ -11,11 +12,11 @@ body {
   flex-direction: column;
 }
 .container h1 {
-  text-align: center;
   margin: 0;
+  text-align: center;
   color: white;
 }
-.container .addItem {
+.container .create-item-area {
   display: flex;
   flex-direction: column;
   width: 262px;
@@ -24,80 +25,91 @@ body {
   background-color: aliceblue;
   border-radius: 10px;
 }
-.container .addItem .inputItemName, .container .addItem .inputItemValue, .container .addItem .inputItemQt {
-  margin-bottom: 10px;
-}
-.container .addItem .name-and-position {
+.container .create-item-area .name-and-position {
   display: flex;
   justify-content: space-between;
 }
-.container .addItem .name-and-position div {
+.container .create-item-area .name-and-position .name-area {
+  width: 70%;
+}
+.container .create-item-area .name-and-position div {
   display: flex;
   flex-direction: column;
   width: 24%;
+  margin: 0 0 10px 0;
+  padding: 0;
 }
-.container .addItem .name-and-position .name {
-  width: 70%;
-}
-.container .addItem .value-and-amount {
+.container .create-item-area .value-and-amount {
   display: flex;
   justify-content: space-between;
 }
-.container .addItem .value-and-amount div {
+.container .create-item-area .value-and-amount div {
   display: flex;
   flex-direction: column;
   width: 47%;
+  margin: 0 0 10px 0;
+  padding: 0;
 }
-.container .addItem .add-and-edit {
+.container .create-item-area .add-and-edit {
   display: flex;
   justify-content: space-between;
   width: 100%;
 }
-.container .addItem .add-and-edit .submit {
+.container .create-item-area .add-and-edit .add {
   width: 100%;
   margin: 5px 0;
+  padding: 2px;
 }
-.container .addItem .add-and-edit .edit, .container .addItem .add-and-edit .cancel {
+.container .create-item-area .add-and-edit .edit, .container .create-item-area .add-and-edit .cancel {
   width: 47%;
   margin: 5px 0;
+  padding: 2px;
 }
 
-.a2 {
-  width: 262px;
-  margin: 10px 0;
-  padding: 10px;
+.search-bar {
+  display: flex;
+  justify-content: space-around;
+  padding: 10px 5px 5px;
   background-color: aliceblue;
-  border-radius: 10px;
+  border-radius: 5px 5px 0 0;
 }
-.a2 .a1 {
+
+.container-list {
+  width: 262px;
+  margin: 0;
+  padding: 5px 10px 10px 10px;
+  background-color: aliceblue;
+  border-radius: 0 0 5px 5px;
+}
+.container-list .labels {
   display: flex;
   padding: 0 2px;
   border: 1px solid black;
   border-bottom: none;
   border-radius: 5px 5px 0 0;
 }
-.a2 .a1 .labelName, .a2 .a1 .labelQt, .a2 .a1 .labelValue, .a2 .a1 .labelEdit, .a2 .a1 .labelDelete {
+.container-list .labels .labelName, .container-list .labels .labelQt, .container-list .labels .labelValue, .container-list .labels .labelEdit, .container-list .labels .labelDelete {
   font-size: 10px;
   padding: 1px;
   border-right: 1px solid black;
 }
-.a2 .a1 .labelName {
+.container-list .labels .labelName {
   width: 30%;
 }
-.a2 .a1 .labelQt {
+.container-list .labels .labelQt {
   width: 20%;
 }
-.a2 .a1 .labelValue {
+.container-list .labels .labelValue {
   width: 25%;
 }
-.a2 .a1 .labelEdit {
+.container-list .labels .labelEdit {
   width: 12.5%;
 }
-.a2 .a1 .labelDelete {
+.container-list .labels .labelDelete {
   width: 12.5%;
   border: none;
 }
-.a2 ul {
+.container-list .list {
   display: flex;
   flex-direction: column;
   height: 200px;
@@ -108,13 +120,13 @@ body {
   overflow-y: auto;
   white-space: nowrap;
 }
-.a2 ul::-webkit-scrollbar {
+.container-list .list::-webkit-scrollbar {
   width: 5px;
 }
-.a2 ul::-webkit-scrollbar-thumb {
+.container-list .list::-webkit-scrollbar-thumb {
   background-color: #ceccee;
 }
-.a2 ul .liItem {
+.container-list .list .liItem {
   display: flex;
   align-items: center;
   width: 100%;
@@ -125,86 +137,80 @@ body {
   border-radius: 5px;
   transition: all 1s;
 }
-.a2 ul .liItem .divName {
+.container-list .list .liItem .div-name {
   display: flex;
   align-items: center;
   width: 30%;
   height: 16px;
   margin: 0 7px;
+  padding: 0;
   overflow-x: auto;
   overflow-y: hidden;
   white-space: nowrap;
 }
-.a2 ul .liItem .divName::-webkit-scrollbar {
+.container-list .list .liItem .div-name::-webkit-scrollbar {
   height: 2px;
 }
-.a2 ul .liItem .divName::-webkit-scrollbar-thumb {
+.container-list .list .liItem .div-name::-webkit-scrollbar-thumb {
   background-color: #ceccee;
 }
-.a2 ul .liItem .divQt {
+.container-list .list .liItem .div-qt {
   width: 20%;
   font-size: 13px;
 }
-.a2 ul .liItem .divContainerValue {
+.container-list .list .liItem .div-container-value {
   display: flex;
   align-items: center;
   width: 25%;
   height: 25px;
+  margin: 0;
+  padding: 0;
 }
-.a2 ul .liItem .divContainerValue .divMoney {
+.container-list .list .liItem .div-container-value .div-money {
   margin-right: 1px;
   font-size: 13px;
 }
-.a2 ul .liItem .divContainerValue .divValue {
+.container-list .list .liItem .div-container-value .div-value {
   display: flex;
   align-items: center;
   width: 60%;
   height: 16px;
+  margin: 0;
+  padding: 0;
+  font-size: 13px;
   overflow-x: auto;
   overflow-y: hidden;
   white-space: nowrap;
-  font-size: 13px;
 }
-.a2 ul .liItem .divContainerValue .divValue::-webkit-scrollbar {
+.container-list .list .liItem .div-container-value .div-value::-webkit-scrollbar {
   height: 2px;
 }
-.a2 ul .liItem .divContainerValue .divValue::-webkit-scrollbar-thumb {
+.container-list .list .liItem .div-container-value .div-value::-webkit-scrollbar-thumb {
   background-color: #ceccee;
 }
-.a2 ul .liItem .liButtons {
+.container-list .list .liItem .div-buttons {
   display: flex;
   width: 25%;
 }
-.a2 ul .liItem .liButtons button {
-  height: 20px;
-  font-size: 10px;
-  padding: 0 2px;
+.container-list .list .liItem .div-buttons button {
   width: 40%;
+  height: 20px;
+  margin: 0;
+  padding: 0 2px;
+  font-size: 10px;
 }
-.a2 ul .liItem .liButtons .editar {
+.container-list .list .liItem .div-buttons .editar {
   margin-right: 15%;
 }
-.a2 ul .liItem .liButtons .apagar {
+.container-list .list .liItem .div-buttons .apagar {
   width: 40%;
 }
 
-.a3 {
+.total-value {
   padding: 5px 5px;
   border: 1px solid black;
   border-top: none;
   border-radius: 0 0 5px 5px;
-}
-
-.a4 {
-  display: flex;
-  justify-content: space-around;
-  padding: 5px;
-  background-color: aliceblue;
-  border-radius: 5px;
-}
-
-.animation {
-  background: red;
 }
 
 /*# sourceMappingURL=style.css.map */

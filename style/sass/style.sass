@@ -1,73 +1,73 @@
+@mixin display-direc($display, $flex-direc, $just-cont, $align-item)
+    display: $display
+    flex-direction: $flex-direc
+    justify-content: $just-cont
+    align-items: $align-item
+
+@mixin size--marg($width, $height, $margin, $padding)
+    width: $width
+    height: $height
+    margin: $margin
+    padding: $padding
+
 body
-    display: flex
-    justify-content: center
-    height: 100vh
-    margin: 0
+    @include display-direc(flex, null, center, null)
+    @include size--marg(null, 100vh, 0, 0)
     background-color: rgb(6, 81, 60)
 
 .container
-    display: flex
-    flex-direction: column
-
+    @include display-direc(flex, column , null , null )
+    
     h1
-        text-align: center
         margin: 0
+        text-align: center
         color: white
 
-    .addItem
-        display: flex
-        flex-direction: column
-        width: 262px
-        margin: 20px 0
-        padding: 10px
+    .create-item-area
+        @include display-direc(flex, column , null , null )
+        @include size--marg(262px, null, 20px 0, 10px)
         background-color: aliceblue
         border-radius: 10px
 
-        .inputItemName, .inputItemValue, .inputItemQt
-            margin-bottom: 10px
-
         .name-and-position
-            display: flex
-            justify-content: space-between
+            @include display-direc(flex, null, space-between, null)
 
-            div
-                display: flex
-                flex-direction: column
-                width: 24%
-
-            .name
+            .name-area
                 width: 70%
 
+            div
+                @include display-direc(flex, column, null, null)
+                @include size--marg(24%, null, 0 0 10px 0, 0)
+
         .value-and-amount
-            display: flex
-            justify-content: space-between
+            @include display-direc(flex, null, space-between, null)
 
             div
-                display: flex
-                flex-direction: column
-                width: 47%
+                @include display-direc(flex, column, null, null)
+                @include size--marg(47%, null, 0 0 10px 0, 0)
 
         .add-and-edit
-            display: flex
-            justify-content: space-between
+            @include display-direc(flex, null, space-between, null)
             width: 100%
 
-            .submit
-                width: 100%
-                margin: 5px 0
+            .add
+                @include size--marg(100%, null, 5px 0, 2px)
 
             .edit, .cancel
-                width: 47%
-                margin: 5px 0
+                @include size--marg(47%, null, 5px 0, 2px)
 
-.a2
-    width: 262px
-    margin: 10px 0
-    padding: 10px
+.search-bar
+    @include display-direc(flex, null, space-around, null)
+    padding: 10px 5px 5px
     background-color: aliceblue
-    border-radius: 10px
+    border-radius: 5px 5px 0 0
 
-    .a1
+.container-list
+    @include size--marg(262px, null, 0, 5px 10px 10px 10px)
+    background-color: aliceblue
+    border-radius: 0 0 5px 5px
+
+    .labels
         display: flex
         padding: 0 2px
         border: 1px solid black
@@ -95,12 +95,9 @@ body
             width: 12.5%
             border: none
 
-    ul
-        display: flex
-        flex-direction: column
-        height: 200px
-        margin: 0
-        padding: 2px 2px
+    .list
+        @include display-direc(flex, column, null, null)
+        @include size--marg(null, 200px, 0, 2px 2px)
         background-color: #dadada
         border: 1px solid black
         overflow-y: auto
@@ -113,57 +110,44 @@ body
             background-color: #ceccee
 
         .liItem 
-            display: flex
-            align-items: center
-            width: 100%
-            height: 25px
-            margin: 5px 0
-            padding: 2px 0
+            @include display-direc(flex, null, null, center)
+            @include size--marg(100%, 25px, 5px 0, 2px 0)
             background: #fff
             border-radius: 5px
             transition: all 1s
 
-            .divName
-                display: flex
-                align-items: center
-                width: 30%
-                height: 16px
-                margin: 0 7px
-                
+            .div-name
+                @include display-direc(flex, null, null, center)
+                @include size--marg(30%, 16px, 0 7px, 0)
                 overflow-x: auto
                 overflow-y: hidden
                 white-space: nowrap
 
                 &::-webkit-scrollbar
                     height: 2px
-                    
 
                 &::-webkit-scrollbar-thumb
                     background-color: #ceccee
 
-            .divQt
+            .div-qt
                 width: 20%
                 font-size: 13px
 
-            .divContainerValue
-                display: flex
-                align-items: center
-                width: 25%
-                height: 25px
+            .div-container-value
+                @include display-direc(flex, null, null, center)
+                @include size--marg(25%, 25px, 0, 0)
 
-                .divMoney
+                .div-money
                     margin-right: 1px
                     font-size: 13px
 
-                .divValue
-                    display: flex
-                    align-items: center
-                    width: 60%
-                    height: 16px
+                .div-value
+                    @include display-direc(flex, null, null, center)
+                    @include size--marg(60%, 16px, 0, 0)
+                    font-size: 13px
                     overflow-x: auto
                     overflow-y: hidden
                     white-space: nowrap
-                    font-size: 13px
 
                     &::-webkit-scrollbar
                         height: 2px
@@ -171,15 +155,13 @@ body
                     &::-webkit-scrollbar-thumb
                         background-color: #ceccee
 
-            .liButtons
+            .div-buttons
                 display: flex
                 width: 25%
                 
                 button
-                    height: 20px
+                    @include size--marg(40%, 20px, 0, 0 2px)
                     font-size: 10px
-                    padding: 0 2px
-                    width: 40%
 
                 .editar
                     margin-right: 15%
@@ -187,18 +169,8 @@ body
                 .apagar
                     width: 40%
                     
-.a3
+.total-value
     padding: 5px 5px
     border: 1px solid black
     border-top: none
     border-radius: 0 0 5px 5px
-
-.a4
-    display: flex
-    justify-content: space-around
-    padding: 5px
-    background-color: aliceblue
-    border-radius: 5px
-
-.animation
-    background: red

@@ -31,36 +31,36 @@ const attIndex = (items) => {
 }
 
 const createItem = (textInput, qtInput, valueInput, index) => {
-    let listOfItems = document.querySelector('.lista')
+    let listOfItems = document.querySelector('.list')
 
     let liItem = document.createElement('li')
     liItem.classList.add('liItem')
     liItem.id = `${index - 1}`
 
     let divName = document.createElement('div')
-    divName.classList.add('divName')
+    divName.classList.add('div-name')
 
     let name = capitalizeFirstLetter(textInput)
     let adaptedName = name.replace(/\s/g, "-")
     divName.innerText = adaptedName
 
     let divQt = document.createElement('div')
-    divQt.classList.add('divQt')
+    divQt.classList.add('div-qt')
     divQt.innerText = `${qtInput}`
 
     let divContainerValue = document.createElement('div')
-    divContainerValue.classList.add('divContainerValue')
+    divContainerValue.classList.add('div-container-value')
 
     let divMoney = document.createElement('div')
-    divMoney.classList.add('divMoney')
+    divMoney.classList.add('div-money')
     divMoney.innerText = 'R$:'
 
     let divValue = document.createElement('div')
-    divValue.classList.add('divValue')
+    divValue.classList.add('div-value')
     divValue.innerText = valueInput
 
     let divButtons = document.createElement('div')
-    divButtons.classList.add('liButtons')
+    divButtons.classList.add('div-buttons')
 
     divContainerValue.appendChild(divMoney)
     divContainerValue.appendChild(divValue)
@@ -73,7 +73,6 @@ const createItem = (textInput, qtInput, valueInput, index) => {
     liItem.appendChild(divContainerValue)
     liItem.appendChild(divButtons)
 
-
     listOfItems.appendChild(liItem)
 
     checkPrice()
@@ -83,7 +82,7 @@ const createItem = (textInput, qtInput, valueInput, index) => {
 }
 
 const check = () => {
-    let listOfItems = document.querySelector('.lista')
+    let listOfItems = document.querySelector('.list')
     let itemsOfList = listOfItems.querySelectorAll('.liItem')
 
     if (!inputItemName.value || !inputItemPosition.value || !inputItemQt.value || !inputItemValue.value) {
@@ -95,7 +94,7 @@ const check = () => {
 
         for (let i = 0; i < items.length; i++) {
             let item = items[i]
-            let itemName = item.querySelector('.divName').textContent
+            let itemName = item.querySelector('.div-name').textContent
 
             if (inputItemName.value === itemName) {
                 tem = true
@@ -132,7 +131,7 @@ btnItem.addEventListener('click', () => {
 })
 
 function deleteOrEdit(e) {
-    let listOfItems = document.querySelector('.lista')
+    let listOfItems = document.querySelector('.list')
     let itemsOfList = listOfItems.querySelectorAll('.liItem')
     let el = e.target
 
@@ -158,12 +157,12 @@ function deleteOrEdit(e) {
 
     } else if (el.classList.contains('editar')) {
         if (btnItem.innerHTML !== 'Editar') {
-            let divName = el.parentElement.parentElement.querySelector('.divName')
+            let divName = el.parentElement.parentElement.querySelector('.div-name')
 
             let divPosition = el.parentElement.parentElement.id
 
-            let divQt = el.parentElement.parentElement.querySelector('.divQt')
-            let divValue = el.parentElement.parentElement.querySelector('.divValue')
+            let divQt = el.parentElement.parentElement.querySelector('.div-qt')
+            let divValue = el.parentElement.parentElement.querySelector('.div-value')
 
             let contentDivName = divName.textContent
             let contentDivPosition = divPosition
@@ -223,10 +222,10 @@ function deleteOrEdit(e) {
                             for (let i = 0; i < elementLi.length; i++) {
                                 let liItem = elementLi[i]
 
-                                let divName = liItem.querySelector('.divName')
+                                let divName = liItem.querySelector('.div-name')
                                 let divPosition = liItem.id
-                                let divQt = liItem.querySelector('.divQt')
-                                let divValue = liItem.querySelector('.divValue')
+                                let divQt = liItem.querySelector('.div-qt')
+                                let divValue = liItem.querySelector('.div-value')
 
                                 if (divName.textContent.trim() === contentDivName && divValue.textContent.trim() === contentDivValue && divQt.textContent.trim() === contentDivQt && divPosition === contentDivPosition) {
 

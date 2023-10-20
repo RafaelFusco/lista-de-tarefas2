@@ -6,10 +6,10 @@ const saveItem = () => {
     const liItem = document.querySelectorAll('.liItem')
 
     liItem.forEach((li) => {
-        const divName = li.querySelector('.divName')
+        const divName = li.querySelector('.div-name')
         const divPosition = li.id
-        const divQt = li.querySelector('.divQt')
-        const divValue = li.querySelector('.divValue')
+        const divQt = li.querySelector('.div-qt')
+        const divValue = li.querySelector('.div-value')
 
         const correctValue = Number(divValue.textContent / divQt.textContent)
 
