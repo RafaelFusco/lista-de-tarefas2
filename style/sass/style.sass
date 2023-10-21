@@ -1,33 +1,19 @@
-@mixin display-direc($display, $flex-direc, $just-cont, $align-item)
-    display: $display
-    flex-direction: $flex-direc
-    justify-content: $just-cont
-    align-items: $align-item
-
-@mixin size--marg($width, $height, $margin, $padding)
-    width: $width
-    height: $height
-    margin: $margin
-    padding: $padding
+@import _mixins
+@import _placeholder
 
 body
-    @include display-direc(flex, null, center, null)
+    display: flex
     @include size--marg(null, 100vh, 0, 0)
-    background-color: rgb(6, 81, 60)
+    background-color: #e8e8e8
 
 .container
-    @include display-direc(flex, column , null , null )
-    
-    h1
-        margin: 0
-        text-align: center
-        color: white
+    @include display-direc(flex, column, center, center )
+    width: 100%
 
     .create-item-area
         @include display-direc(flex, column , null , null )
-        @include size--marg(262px, null, 20px 0, 10px)
-        background-color: aliceblue
-        border-radius: 10px
+        @include size--marg(90%, null, 20px 0, 10px)
+        @extend %container-style
 
         .name-and-position
             @include display-direc(flex, null, space-between, null)
@@ -55,29 +41,36 @@ body
 
             .edit, .cancel
                 @include size--marg(47%, null, 5px 0, 2px)
+                
+    .search-and-list
+        @include display-direc(flex, column, null, null)
+        @extend %container-style
+        width: 90%
+        padding: 10px
+
+
 
 .search-bar
-    @include display-direc(flex, null, space-around, null)
-    padding: 10px 5px 5px
-    background-color: aliceblue
-    border-radius: 5px 5px 0 0
+    @include display-direc(flex, null, space-between, null)
+    padding-bottom: 10px
+
+    .inputSearch
+        width: 90%
 
 .container-list
-    @include size--marg(262px, null, 0, 5px 10px 10px 10px)
-    background-color: aliceblue
-    border-radius: 0 0 5px 5px
+    @include size--marg(100%, null, null, null)
 
     .labels
         display: flex
         padding: 0 2px
-        border: 1px solid black
+        box-shadow: 0px 0px 2px black
         border-bottom: none
-        border-radius: 5px 5px 0 0
+        border-radius: 2px
 
         .labelName, .labelQt, .labelValue, .labelEdit, .labelDelete
             font-size: 10px
             padding: 1px
-            border-right: 1px solid black
+            border-right: 1px solid #00000058
         
         .labelName
             width: 30%
@@ -97,9 +90,9 @@ body
 
     .list
         @include display-direc(flex, column, null, null)
-        @include size--marg(null, 200px, 0, 2px 2px)
+        @include size--marg(null, 195px, 5px 0, 2px 2px)
         background-color: #dadada
-        border: 1px solid black
+        box-shadow: 0px 0px 2px black
         overflow-y: auto
         white-space: nowrap
 
@@ -112,8 +105,7 @@ body
         .liItem 
             @include display-direc(flex, null, null, center)
             @include size--marg(100%, 25px, 5px 0, 2px 0)
-            background: #fff
-            border-radius: 5px
+            background-color: white
             transition: all 1s
 
             .div-name
@@ -171,6 +163,6 @@ body
                     
 .total-value
     padding: 5px 5px
-    border: 1px solid black
+    box-shadow: 0px 0px 2px black
     border-top: none
-    border-radius: 0 0 5px 5px
+    border-radius: 2px

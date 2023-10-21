@@ -1,29 +1,30 @@
+.container .search-and-list, .container .create-item-area {
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.7960784314), 1px 1px 5px rgba(0, 0, 0, 0.3450980392) inset;
+}
+
 body {
   display: flex;
-  justify-content: center;
   height: 100vh;
   margin: 0;
   padding: 0;
-  background-color: rgb(6, 81, 60);
+  background-color: #e8e8e8;
 }
 
 .container {
   display: flex;
   flex-direction: column;
-}
-.container h1 {
-  margin: 0;
-  text-align: center;
-  color: white;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
 }
 .container .create-item-area {
   display: flex;
   flex-direction: column;
-  width: 262px;
+  width: 90%;
   margin: 20px 0;
   padding: 10px;
-  background-color: aliceblue;
-  border-radius: 10px;
 }
 .container .create-item-area .name-and-position {
   display: flex;
@@ -65,33 +66,36 @@ body {
   margin: 5px 0;
   padding: 2px;
 }
+.container .search-and-list {
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+  padding: 10px;
+}
 
 .search-bar {
   display: flex;
-  justify-content: space-around;
-  padding: 10px 5px 5px;
-  background-color: aliceblue;
-  border-radius: 5px 5px 0 0;
+  justify-content: space-between;
+  padding-bottom: 10px;
+}
+.search-bar .inputSearch {
+  width: 90%;
 }
 
 .container-list {
-  width: 262px;
-  margin: 0;
-  padding: 5px 10px 10px 10px;
-  background-color: aliceblue;
-  border-radius: 0 0 5px 5px;
+  width: 100%;
 }
 .container-list .labels {
   display: flex;
   padding: 0 2px;
-  border: 1px solid black;
+  box-shadow: 0px 0px 2px black;
   border-bottom: none;
-  border-radius: 5px 5px 0 0;
+  border-radius: 2px;
 }
 .container-list .labels .labelName, .container-list .labels .labelQt, .container-list .labels .labelValue, .container-list .labels .labelEdit, .container-list .labels .labelDelete {
   font-size: 10px;
   padding: 1px;
-  border-right: 1px solid black;
+  border-right: 1px solid rgba(0, 0, 0, 0.3450980392);
 }
 .container-list .labels .labelName {
   width: 30%;
@@ -112,11 +116,11 @@ body {
 .container-list .list {
   display: flex;
   flex-direction: column;
-  height: 200px;
-  margin: 0;
+  height: 195px;
+  margin: 5px 0;
   padding: 2px 2px;
   background-color: #dadada;
-  border: 1px solid black;
+  box-shadow: 0px 0px 2px black;
   overflow-y: auto;
   white-space: nowrap;
 }
@@ -133,8 +137,7 @@ body {
   height: 25px;
   margin: 5px 0;
   padding: 2px 0;
-  background: #fff;
-  border-radius: 5px;
+  background-color: white;
   transition: all 1s;
 }
 .container-list .list .liItem .div-name {
@@ -208,9 +211,9 @@ body {
 
 .total-value {
   padding: 5px 5px;
-  border: 1px solid black;
+  box-shadow: 0px 0px 2px black;
   border-top: none;
-  border-radius: 0 0 5px 5px;
+  border-radius: 2px;
 }
 
 /*# sourceMappingURL=style.css.map */
