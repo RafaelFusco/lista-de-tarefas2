@@ -61,6 +61,16 @@ body
             justify-content: center
             font-size: 0.8rem
 
+        @include mobile-7
+            width: 80%
+            justify-content: center
+            font-size: 0.8rem
+
+        @include mobile-5
+            width: calc( 90% + 20px )
+            justify-content: center
+            font-size: 0.8rem
+
 .create-item-area
     @include display-direc(flex, column , null , null )
     @include size--marg(25%, null, 20px 0, 10px)
@@ -68,6 +78,12 @@ body
 
     @include mobile-9
         @include size--marg(95%, null, 20px 0, 10px)  
+
+    @include mobile-7
+        @include size--marg(95%, null, 20px 0, 10px)  
+
+    @include mobile-5
+        @include size--marg(70%, null, 20px 0, 10px 9px)  
 
     .name-and-position
         @include display-direc(flex, null, space-between, null)
@@ -107,16 +123,38 @@ body
         height: max-content
         margin: 20px 0 20px 15px
 
+    @include mobile-7
+        padding: 5px 10px
+        height: max-content
+        margin: 20px 0 20px 15px
+
+    @include mobile-5
+        padding: 5px 10px
+        height: max-content
+        margin: 20px 0 20px 15px
+
     .item-qt
         font-size: 3rem 
 
         @include mobile-9
+            font-size: 2rem
+
+        @include mobile-7
+            font-size: 2rem
+
+        @include mobile-5
             font-size: 2rem
     
     span
         font-size: 2rem
 
         @include mobile-9
+            font-size: 1rem
+
+        @include mobile-7
+            font-size: 1rem
+
+        @include mobile-5
             font-size: 1rem
 
 .search-and-list
