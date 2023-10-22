@@ -1,6 +1,47 @@
 @import _mixins
 @import _placeholder
 
+
+@mixin mobile-9
+    @media ( max-width: 280px )
+        @content
+
+@mixin mobile-8
+    @media ( max-width: 340px )
+        @content
+
+@mixin mobile-7
+    @media ( max-width: 425px )
+        @content
+
+@mixin mobile-6
+    @media ( max-width: 580px )
+        @content
+
+@mixin mobile-5
+    @media ( max-width: 690px )
+        @content
+
+@mixin mobile-4
+    @media ( max-width: 780px ) and (max-height: 1024px)
+        @content
+
+@mixin mobile-3
+    @media ( max-width: 840px ) and (max-height: 1180px)
+        @content
+
+@mixin mobile-2
+    @media ( max-width: 920px )
+        @content
+
+@mixin mobile-1
+    @media ( max-width: 1024px ) and (max-height: 600px)
+        @content
+
+@mixin mobile-0
+    @media ( max-width: 1200px )
+        @content
+
 body
     display: flex
     @include size--marg(null, 100vh, 0, 0)
@@ -10,133 +51,141 @@ body
     @include display-direc(flex, column, center, center )
     width: 100%
 
-    .create-item-area
-        @include display-direc(flex, column , null , null )
-        @include size--marg(90%, null, 20px 0, 10px)
-        @extend %container-style
 
-        .name-and-position
-            @include display-direc(flex, null, space-between, null)
+    .create-and-qt
+        @include display-direc(flex, row, null, null )
+        width: calc( 90% + 20px )
 
-            .name-area
-                width: 70%
+        @include mobile-9
+            width: 70%
+            justify-content: center
+            font-size: 0.8rem
 
-            div
-                @include display-direc(flex, column, null, null)
-                @include size--marg(24%, null, 0 0 10px 0, 0)
+.create-item-area
+    @include display-direc(flex, column , null , null )
+    @include size--marg(25%, null, 20px 0, 10px)
+    @extend %container-style
 
-        .value-and-amount
-            @include display-direc(flex, null, space-between, null)
+    @include mobile-9
+        @include size--marg(95%, null, 20px 0, 10px)  
 
-            div
-                @include display-direc(flex, column, null, null)
-                @include size--marg(47%, null, 0 0 10px 0, 0)
+    .name-and-position
+        @include display-direc(flex, null, space-between, null)
 
-        .add-and-edit
-            @include display-direc(flex, null, space-between, null)
-            width: 100%
+        .name-area
+            width: 70%
 
-            .add
-                @include size--marg(100%, null, 5px 0, 2px)
+        div
+            @include display-direc(flex, column, null, null)
+            @include size--marg(24%, null, 0 0 10px 0, 0)
 
-            .edit, .cancel
-                @include size--marg(47%, null, 5px 0, 2px)
-                
-    .search-and-list
-        @include display-direc(flex, column, null, null)
-        @extend %container-style
-        width: 90%
-        padding: 10px
+    .value-and-amount
+        @include display-direc(flex, null, space-between, null)
+
+        div
+            @include display-direc(flex, column, null, null)
+            @include size--marg(47%, null, 0 0 10px 0, 0)
 
 
+    .add-and-edit
+        @include display-direc(flex, null, space-between, null)
+        width: 100%
 
-.search-bar
-    @include display-direc(flex, null, space-between, null)
-    padding-bottom: 10px
+        .add
+            @include size--marg(100%, null, 5px 0, 2px)
 
-    .inputSearch
-        width: 90%
+        .edit, .cancel
+            @include size--marg(47%, null, 5px 0, 2px)
 
-.container-list
-    @include size--marg(100%, null, null, null)
+.qt-items-list
+    @include display-direc(flex, column, center, center )
+    @include size--marg(max-content, null, 20px, 10px 25px)
+    @extend %container-style
 
-    .labels
-        display: flex
-        padding: 0 2px
-        box-shadow: 0px 0px 2px black
-        border-bottom: none
-        border-radius: 2px
+    @include mobile-9
+        padding: 5px 10px
+        height: max-content
+        margin: 20px 0 20px 15px
 
-        .labelName, .labelQt, .labelValue, .labelEdit, .labelDelete
-            font-size: 10px
-            padding: 1px
-            border-right: 1px solid #00000058
-        
-        .labelName
-            width: 30%
-        
-        .labelQt
-            width: 20%
+    .item-qt
+        font-size: 3rem 
 
-        .labelValue
-            width: 25%
+        @include mobile-9
+            font-size: 2rem
+    
+    span
+        font-size: 2rem
 
-        .labelEdit
-            width: 12.5%
+        @include mobile-9
+            font-size: 1rem
+
+.search-and-list
+    @include display-direc(flex, column, null, null)
+    @extend %container-style
+    width: 90%
+    padding: 10px
+
+    .search-bar
+        @include display-direc(flex, null, space-between, null)
+        padding-bottom: 10px
+
+        .inputSearch
+            width: 90%
+
+    .container-list
+        @include size--marg(100%, null, null, null)
+
+        .labels
+            display: flex
+            padding: 0 2px
+            box-shadow: 0px 0px 2px black
+            border-bottom: none
+            border-radius: 2px
+
+            .labelName, .labelQt, .labelValue, .labelEdit, .labelDelete
+                font-size: 10px
+                padding: 1px
+                border-right: 1px solid #00000058
             
-        .labelDelete
-            width: 12.5%
-            border: none
-
-    .list
-        @include display-direc(flex, column, null, null)
-        @include size--marg(null, 195px, 5px 0, 2px 2px)
-        background-color: #dadada
-        box-shadow: 0px 0px 2px black
-        overflow-y: auto
-        white-space: nowrap
-
-        &::-webkit-scrollbar
-            width: 5px
-
-        &::-webkit-scrollbar-thumb
-            background-color: #ceccee
-
-        .liItem 
-            @include display-direc(flex, null, null, center)
-            @include size--marg(100%, 25px, 5px 0, 2px 0)
-            background-color: white
-            transition: all 1s
-
-            .div-name
-                @include display-direc(flex, null, null, center)
-                @include size--marg(30%, 16px, 0 7px, 0)
-                overflow-x: auto
-                overflow-y: hidden
-                white-space: nowrap
-
-                &::-webkit-scrollbar
-                    height: 2px
-
-                &::-webkit-scrollbar-thumb
-                    background-color: #ceccee
-
-            .div-qt
+            .labelName
+                width: 30%
+            
+            .labelQt
                 width: 20%
-                font-size: 13px
 
-            .div-container-value
+            .labelValue
+                width: 25%
+
+            .labelEdit
+                width: 12.5%
+                
+            .labelDelete
+                width: 12.5%
+                border: none
+
+        .list
+            @include display-direc(flex, column, null, null)
+            @include size--marg(null, 195px, 5px 0, 2px 2px)
+            background-color: #dadada
+            box-shadow: 0px 0px 2px black
+            overflow-y: auto
+            white-space: nowrap
+
+            &::-webkit-scrollbar
+                width: 5px
+
+            &::-webkit-scrollbar-thumb
+                background-color: #ceccee
+
+            .liItem 
                 @include display-direc(flex, null, null, center)
-                @include size--marg(25%, 25px, 0, 0)
+                @include size--marg(100%, 25px, 5px 0, 2px 0)
+                background-color: white
+                transition: all 1s
 
-                .div-money
-                    margin-right: 1px
-                    font-size: 13px
-
-                .div-value
+                .div-name
                     @include display-direc(flex, null, null, center)
-                    @include size--marg(60%, 16px, 0, 0)
-                    font-size: 13px
+                    @include size--marg(30%, 16px, 0 7px, 0)
                     overflow-x: auto
                     overflow-y: hidden
                     white-space: nowrap
@@ -147,20 +196,46 @@ body
                     &::-webkit-scrollbar-thumb
                         background-color: #ceccee
 
-            .div-buttons
-                display: flex
-                width: 25%
-                
-                button
-                    @include size--marg(40%, 20px, 0, 0 2px)
-                    font-size: 10px
+                .div-qt
+                    width: 20%
+                    font-size: 13px
 
-                .editar
-                    margin-right: 15%
+                .div-container-value
+                    @include display-direc(flex, null, null, center)
+                    @include size--marg(25%, 25px, 0, 0)
 
-                .apagar
-                    width: 40%
+                    .div-money
+                        margin-right: 1px
+                        font-size: 13px
+
+                    .div-value
+                        @include display-direc(flex, null, null, center)
+                        @include size--marg(60%, 16px, 0, 0)
+                        font-size: 13px
+                        overflow-x: auto
+                        overflow-y: hidden
+                        white-space: nowrap
+
+                        &::-webkit-scrollbar
+                            height: 2px
+
+                        &::-webkit-scrollbar-thumb
+                            background-color: #ceccee
+
+                .div-buttons
+                    display: flex
+                    width: 25%
                     
+                    button
+                        @include size--marg(40%, 20px, 0, 0 2px)
+                        font-size: 10px
+
+                    .editar
+                        margin-right: 15%
+
+                    .apagar
+                        width: 40%
+                        
 .total-value
     padding: 5px 5px
     box-shadow: 0px 0px 2px black

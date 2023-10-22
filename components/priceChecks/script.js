@@ -21,11 +21,11 @@ const checkPrice = () => {
     let elementLi = listOfItems.querySelectorAll('.liItem')
 
     if (elementLi.length > 0) {   
-        let itemsOflist = document.querySelectorAll('.liItem')
-        attIndex(itemsOflist)
+        attIndex(elementLi)
     }
 
     inputItemPosition.value = elementLi.length + 1
+
 
     for (let i = 0; i < elementLi.length; i++) {
         let liItem = elementLi[i]
@@ -43,6 +43,8 @@ const checkPrice = () => {
     }
     let elementDivValue = listOfItems.querySelectorAll('.div-value')
     document.querySelector('.total-value').innerHTML = `Valor total da lista: R$ ${checkTotalPrice(elementDivValue)}`
+    document.querySelector('.item-qt').innerHTML = `${elementLi.length}`
+    
 }
 
 export { checkPrice }

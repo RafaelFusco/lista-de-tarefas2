@@ -273,7 +273,7 @@ function deleteOrEdit(e) {
 
         if (inputSearch.value !== '') {
             items.forEach(item => {
-                let nameItem = item.querySelector('.divName').textContent
+                let nameItem = item.querySelector('.div-name').textContent
                 let itemNameAdapted = capitalizeFirstLetter(inputSearch.value)
 
                 if (inputSearch.value === nameItem || itemNameAdapted === nameItem) {
