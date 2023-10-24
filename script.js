@@ -51,8 +51,28 @@ const addSavedItem = () => {
     }
 }
 
-addSavedItem()
+const listTitle = () => {
+    let title = document.querySelector('.title')
 
+    let input = document.createElement('input')
+    input.classList.add('input-date')
+    input.value = 1
+
+    let button = document.createElement('button')
+    button.classList.add('button-date')
+    button.innerText = 'Ed'
+
+    let text1 = document.createElement('span')
+    text1.classList.add('text-1')
+    text1.innerText = 'Lista do dia'
+    
+    title.appendChild(text1)
+    title.appendChild(input)
+    title.appendChild(button)
+}
+
+listTitle()
+addSavedItem()
 checkPrice()
 
 export { saveItem }

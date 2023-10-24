@@ -1,46 +1,6 @@
 @import _mixins
 @import _placeholder
-
-
-@mixin mobile-9
-    @media ( max-width: 280px )
-        @content
-
-@mixin mobile-8
-    @media ( max-width: 340px )
-        @content
-
-@mixin mobile-7
-    @media ( max-width: 425px )
-        @content
-
-@mixin mobile-6
-    @media ( max-width: 580px )
-        @content
-
-@mixin mobile-5
-    @media ( max-width: 690px )
-        @content
-
-@mixin mobile-4
-    @media ( max-width: 780px ) and (max-height: 1024px)
-        @content
-
-@mixin mobile-3
-    @media ( max-width: 840px ) and (max-height: 1180px)
-        @content
-
-@mixin mobile-2
-    @media ( max-width: 920px )
-        @content
-
-@mixin mobile-1
-    @media ( max-width: 1024px ) and (max-height: 600px)
-        @content
-
-@mixin mobile-0
-    @media ( max-width: 1200px )
-        @content
+@import _utilities
 
 body
     display: flex
@@ -51,39 +11,14 @@ body
     @include display-direc(flex, column, center, center )
     width: 100%
 
-
     .create-and-qt
         @include display-direc(flex, row, null, null )
         width: calc( 90% + 20px )
 
-        @include mobile-9
-            width: 70%
-            justify-content: center
-            font-size: 0.8rem
-
-        @include mobile-7
-            width: 80%
-            justify-content: center
-            font-size: 0.8rem
-
-        @include mobile-5
-            width: calc( 90% + 20px )
-            justify-content: center
-            font-size: 0.8rem
-
 .create-item-area
     @include display-direc(flex, column , null , null )
-    @include size--marg(25%, null, 20px 0, 10px)
+    @include size--marg(25%, null, 0, 10px)
     @extend %container-style
-
-    @include mobile-9
-        @include size--marg(95%, null, 20px 0, 10px)  
-
-    @include mobile-7
-        @include size--marg(95%, null, 20px 0, 10px)  
-
-    @include mobile-5
-        @include size--marg(70%, null, 20px 0, 10px 9px)  
 
     .name-and-position
         @include display-direc(flex, null, space-between, null)
@@ -102,7 +37,6 @@ body
             @include display-direc(flex, column, null, null)
             @include size--marg(47%, null, 0 0 10px 0, 0)
 
-
     .add-and-edit
         @include display-direc(flex, null, space-between, null)
         width: 100%
@@ -115,60 +49,29 @@ body
 
 .qt-items-list
     @include display-direc(flex, column, center, center )
-    @include size--marg(max-content, null, 20px, 10px 25px)
+    @include size--marg(max-content, null, 0 20px, 10px 25px)
     @extend %container-style
-
-    @include mobile-9
-        padding: 5px 10px
-        height: max-content
-        margin: 20px 0 20px 15px
-
-    @include mobile-7
-        padding: 5px 10px
-        height: max-content
-        margin: 20px 0 20px 15px
-
-    @include mobile-5
-        padding: 5px 10px
-        height: max-content
-        margin: 20px 0 20px 15px
 
     .item-qt
         font-size: 3rem 
-
-        @include mobile-9
-            font-size: 2rem
-
-        @include mobile-7
-            font-size: 2rem
-
-        @include mobile-5
-            font-size: 2rem
     
     span
         font-size: 2rem
-
-        @include mobile-9
-            font-size: 1rem
-
-        @include mobile-7
-            font-size: 1rem
-
-        @include mobile-5
-            font-size: 1rem
 
 .search-and-list
     @include display-direc(flex, column, null, null)
     @extend %container-style
     width: 90%
+    margin-top: 20px
     padding: 10px
 
     .search-bar
         @include display-direc(flex, null, space-between, null)
+        width: 35%
         padding-bottom: 10px
 
         .inputSearch
-            width: 90%
+            width: 70%
 
     .container-list
         @include size--marg(100%, null, null, null)
@@ -279,3 +182,28 @@ body
     box-shadow: 0px 0px 2px black
     border-top: none
     border-radius: 2px
+
+.title
+    display: flex
+    
+    align-items: flex-end
+    width: 100%
+    font-size: 4rem
+    
+.text-1
+    display: flex
+    height: 4rem
+
+.input-date
+    display: flex
+    text-align: center
+    width: 5rem
+    height: 3rem
+    margin: 0 0.5rem 
+    font-size: 3.5rem
+    background: transparent
+    border: none
+    outline: none
+
+// .button-date
+    

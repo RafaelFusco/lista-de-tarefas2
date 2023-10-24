@@ -1,0 +1,154 @@
+@media (max-width: 280px) {
+  .title {
+    display: none;
+  }
+}
+@media (max-width: 425px) {
+  .title {
+    display: none;
+  }
+}
+@media (max-width: 690px) {
+  .title {
+    display: none;
+  }
+}
+
+@media (max-width: 280px) {
+  .create-and-qt {
+    width: 70%;
+    justify-content: space-between;
+    font-size: 0.8rem;
+  }
+}
+@media (max-width: 425px) {
+  .create-and-qt {
+    width: 80%;
+    justify-content: space-between;
+    font-size: 0.8rem;
+  }
+}
+@media (max-width: 690px) {
+  .create-and-qt {
+    width: calc(90% + 20px);
+    justify-content: space-between;
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 280px) {
+  .create-item-area {
+    width: 95%;
+    margin: 20px 0;
+    padding: 10px;
+  }
+}
+@media (max-width: 425px) {
+  .create-item-area {
+    width: 95%;
+    margin: 20px 0;
+    padding: 10px;
+  }
+}
+@media (max-width: 690px) {
+  .create-item-area {
+    width: 70%;
+    margin: 20px 0;
+    padding: 10px 9px;
+  }
+}
+
+@media (max-width: 280px) {
+  .qt-items-list {
+    padding: 5px 10px;
+    height: max-content;
+    margin: 20px 0 0 0;
+  }
+}
+@media (max-width: 425px) {
+  .qt-items-list {
+    padding: 5px 10px;
+    height: max-content;
+    margin: 20px 0 0 0;
+  }
+}
+@media (max-width: 690px) {
+  .qt-items-list {
+    padding: 5px 10px;
+    height: max-content;
+    margin: 20px 0 0 0;
+  }
+}
+@media (max-width: 280px) {
+  .qt-items-list .item-qt {
+    font-size: 2rem;
+  }
+}
+@media (max-width: 425px) {
+  .qt-items-list .item-qt {
+    font-size: 2rem;
+  }
+}
+@media (max-width: 690px) {
+  .qt-items-list .item-qt {
+    font-size: 2rem;
+  }
+}
+@media (max-width: 280px) {
+  .qt-items-list span {
+    font-size: 1rem;
+  }
+}
+@media (max-width: 425px) {
+  .qt-items-list span {
+    font-size: 1rem;
+  }
+}
+@media (max-width: 690px) {
+  .qt-items-list span {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 280px) {
+  .search-and-list .search-bar {
+    width: 70%;
+  }
+}
+@media (max-width: 425px) {
+  .search-and-list .search-bar {
+    width: 70%;
+  }
+}
+@media (max-width: 690px) {
+  .search-and-list .search-bar {
+    width: 70%;
+  }
+}
+@media (max-width: 840px) and (max-height: 1180px) {
+  .search-and-list .search-bar {
+    width: 70%;
+  }
+}
+@media (max-width: 1024px) and (max-height: 600px) {
+  .search-and-list .search-bar {
+    width: 70%;
+  }
+}
+@media (max-width: 280px) {
+  .search-and-list .search-bar .inputSearch {
+    width: 60%;
+  }
+}
+@media (max-width: 425px) {
+  .search-and-list .search-bar .inputSearch {
+    width: 60%;
+  }
+}
+@media (max-width: 690px) {
+  .search-and-list .search-bar .inputSearch {
+    width: 60%;
+  }
+}
+
+/*# sourceMappingURL=responsive.css.map */
