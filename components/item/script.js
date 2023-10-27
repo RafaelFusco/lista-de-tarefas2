@@ -1,7 +1,7 @@
 import { saveItem } from "../../script.js"
 import { checkPrice } from "../priceChecks/script.js"
 import { createBtn } from "../itemBtn/script.js"
-import { inputItemName, inputItemValue, inputItemQt, btnContainer, btnItem, inputItemPosition } from "../itemForm/script.js"
+import { inputItemName, inputItemValue, inputItemQt, btnContainer, btnItem, inputItemPosition } from "../../script.js"
 import { createSearchBar } from "../itemSearch/script.js"
 
 function capitalizeFirstLetter(input) {
@@ -123,12 +123,6 @@ const createCancelEdit = () => {
     cancel.innerText = 'Cancelar'
     return cancel
 }
-
-btnItem.addEventListener('click', () => {
-    if (btnItem.innerText === 'Adicionar') {
-        check()
-    }
-})
 
 function deleteOrEdit(e) {
     let listOfItems = document.querySelector('.list')
@@ -293,6 +287,4 @@ document.addEventListener('click', (e) => {
     deleteOrEdit(e)
 })
 
-createSearchBar()
-
-export { createItem, deleteOrEdit, attIndex }
+export { createItem, deleteOrEdit, attIndex, check }

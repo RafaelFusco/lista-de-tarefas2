@@ -1,5 +1,5 @@
 import { attIndex } from "../item/script.js";
-import { inputItemPosition } from "../itemForm/script.js";
+import { inputItemPosition } from "../../script.js";
 
 let totalValue = 0
 
