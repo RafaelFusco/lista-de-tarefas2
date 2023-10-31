@@ -1,8 +1,7 @@
 import { saveItem } from "../../script.js"
 import { checkPrice } from "../priceChecks/script.js"
 import { createBtn } from "../itemBtn/script.js"
-import { inputItemName, inputItemValue, inputItemQt, btnContainer, btnItem, inputItemPosition } from "../../script.js"
-import { createSearchBar } from "../itemSearch/script.js"
+import { inputItemName, inputItemValue, inputItemQt, btnContainer, btnItem, inputItemPosition } from "../itemForm/script.js"
 
 function capitalizeFirstLetter(input) {
     return input

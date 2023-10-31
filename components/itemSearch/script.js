@@ -1,6 +1,5 @@
 import { createBtn } from "../itemBtn/script.js"
 
-
 const createSearchBar = () => {
     const searchBar = document.querySelector('.search-bar')
     let input = document.createElement('input')
