@@ -50,7 +50,7 @@ const registerAndQuantity = () => {
     valueAndAmount.append(qtArea, valueArea)
     addAndEdit.appendChild(add)
     itemArea.append(nameAndPosition, valueAndAmount, addAndEdit)
-    createAndQtArea.append(itemArea, quantityOfItems(), listTitle())
+    createAndQtArea.append(itemArea, quantityOfItems())
 
     return createAndQtArea
 }
@@ -69,13 +69,18 @@ const listTitle = () => {
     let title = createEl('div', 'title')
 
     let input = createEl('input', 'input-date')
+    input.value === '' ? input.value = 1 :  null
     input.readOnly = true
+
+    let input2 = createEl('input', 'input-date')
+    input2.value === '' ? input2.value = 1 :  null
+    input2.readOnly = true
 
     let button = createEl('button', 'button-date', 'Ed')
 
     let text1 = createEl('span', 'text-1', 'Lista do dia')
 
-    title.append(text1, input, button)
+    title.append(text1, input, '/', input2, button)
 
     return title
 }
@@ -109,7 +114,7 @@ const createSearchAndList = () => {
 const createSistem = () => {
     let container = document.querySelector('.container')
 
-    container.append(registerAndQuantity(), createSearchAndList())
+    container.append(listTitle(), registerAndQuantity(), createSearchAndList())
     createSearchBar()
 }
 

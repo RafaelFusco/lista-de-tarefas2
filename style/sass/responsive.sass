@@ -3,13 +3,39 @@
 
 .title
     @include mobile-9
-        display: none
-
+        height: 26px
     @include mobile-7
-        display: none
-
+        height: 26px
     @include mobile-5
-        display: none
+        height: 26px
+    .text-1
+        @include mobile-9
+            height: 26px
+            font-size: 2rem
+
+        @include mobile-7
+            font-size: 2rem
+            height: 26px
+
+        @include mobile-5
+            font-size: 1.5rem
+            height: 26px
+            
+    .input-date
+        @include mobile-9
+            width: 26px
+            height: 26px
+            font-size: 2rem
+
+        @include mobile-7
+            width: 26px
+            font-size: 2rem
+            height: 26px
+
+        @include mobile-5
+            width: 26px
+            font-size: 1.5rem
+            height: 26px
 
 .create-and-qt
     @include mobile-9
@@ -76,26 +102,32 @@
 .search-and-list
     .search-bar
         @include mobile-9
-            width: 70%
+            width: 100%
 
         @include mobile-7
-            width: 70%
+            width: 100%
 
         @include mobile-5
-            width: 70%
+            width: 100%
         
         @include mobile-3
-            width: 70%
+            width: 100%
 
         @include mobile-1
-            width: 70%
+            width: 100%
 
         .inputSearch
             @include mobile-9
-                width: 60%
+                width: 40%
 
             @include mobile-7
-                width: 60%
+                width: 40%
 
             @include mobile-5
-                width: 60%
+                width: 40%
+        
+            @include mobile-3
+                width: 40%
+
+            @include mobile-1
+                width: 40%

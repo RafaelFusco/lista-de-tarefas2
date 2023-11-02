@@ -8,7 +8,7 @@ body
     background-color: #e8e8e8
 
 .container
-    @include display-direc(flex, column, center, center )
+    @include display-direc(flex, column, null, center )
     width: 100%
 
     .create-and-qt
@@ -66,12 +66,13 @@ body
     padding: 10px
 
     .search-bar
-        @include display-direc(flex, null, space-between, null)
-        width: 35%
+        @include display-direc(flex, null, null, null)
+        width: 25%
         padding-bottom: 10px
 
         .inputSearch
             width: 70%
+            margin-right: 1rem
 
     .container-list
         @include size--marg(100%, null, null, null)
@@ -184,23 +185,27 @@ body
     border-radius: 2px
 
 .title
-    display: flex
+    @include display-direc(flex, row, center, center)
     
-    align-items: flex-end
     width: 100%
-    font-size: 4rem
+    height: 64px
+    margin-bottom: 20px
+    background-color: #c8c8c8a7
+    font-size: 3rem
+    
     
 .text-1
     display: flex
     height: 4rem
+    align-items: center
 
 .input-date
     display: flex
     text-align: center
-    width: 5rem
-    height: 3rem
+    width: 52px
+    height: 52px
     margin: 0 0.5rem 
-    font-size: 3.5rem
+    font-size: 3rem
     background: transparent
     border: none
     outline: none
